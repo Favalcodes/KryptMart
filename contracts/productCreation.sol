@@ -27,6 +27,7 @@ contract ProductCreation is UserRegistration  {
     struct VendorInventory {
        Product item;
        uint price;
+       uint minimumOrderQuantity;
        ProductSaleStatus saleStatus;
        address seller; 
     }
@@ -40,7 +41,7 @@ contract ProductCreation is UserRegistration  {
    
     event newProduct(uint _id, string name, string description);
     event newTransportService(uint _id, string _name, string _description, string _provider, uint _price);
-    event newIventoryItem(uint _id, string itemName, string _vendor);
+    event newIventoryItem(uint _id, string itemName, string _vendor, uint _price, uint _moq);
 
 
     modifier usersOnly() {
@@ -58,12 +59,13 @@ contract ProductCreation is UserRegistration  {
         _;
     } 
 
-    function addProduct(string calldata _name, string calldata _description) external usersOnly vendorAndManufacturerOnly {
+    function addProduct(string calldata _name, string calldata _description uint _price) external usersOnly vendorAndManufacturerOnly {
 
         products.push(Product(_name, _description, msg.sender ));
         uint id = properties.length - 1;
         productToCreator[id] = msg.sender;
         emit newProduct(id, _name, _description, msg.sender);
+        addInventoryItem(id, _price);
 
     }
 
@@ -76,16 +78,29 @@ contract ProductCreation is UserRegistration  {
 
     }
 
-    function addInventoryItem(uint _id, uint amount) external usersOnly vendorAndManufacturerOnly {
+    function addInventoryItem(uint _productId, uint _price) public usersOnly vendorAndManufacturerOnly {
 
+        uint _moq = 1;        
 
-        
+        if (User[userToProfile[msg.sender]].role == UserType.manufacturer) {
+            _moq = 5;
+        } 
+        vendorInventory.push(VendorInventory(products[_productId], _price, _moq, ProductSaleStatus.onSale, msg.sender));
+        uint id = vendorInventory.length - 1;
+        inventory[id] = msg.sender;
+        emit newIventoryItem(id, products[_productId].name,  User[userToProfile[msg.sender]].name, _price, _moq );
+
     }
     
     function viewInventoryItem(uint _id) view public returns(string memory,string memory) {
           
-  
-        
+        string memory name = vendorInventory[_id].item.name;
+        string memory _description = vendorInventory[_id].item.description;
+        string  memory _seller = User[userToProfile[vendorInventory[_id].seller]].name;
+        uint _price = vendorInventory[_id].price;
+        uint _moq = vendorInventory[_id].minimumOrderQuantity;
+        ProductSaleStatus _saleStatus = vendorInventory[_id].saleStatus;
+       
     }
 }
 
