@@ -8,7 +8,7 @@ contract ProductCreation is UserRegistration  {
     using SafeMath for uint;
 
     enum ProductSaleStatus{ onSale, soldOut}
-    enum ProductCondition{perfect, damaged}
+    
 
 
     struct Product {
