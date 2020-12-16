@@ -126,12 +126,6 @@ include 'layout/header.php';
                 <label class="text-small text-uppercase" for="image1">Image</label>
                 <input class="form-control form-control-lg" id="image1" type="file">
               </div>
-              <!-- <div class="col-lg-12 form-group">
-                <div class="custom-control custom-checkbox">
-                  <input class="custom-control-input" id="customCheck1" type="checkbox">
-                  <label class="custom-control-label" for="customCheck1">Add Image</label>
-                </div>
-              </div> -->
               <div class="reveal col-lg-6 form-group">
                 <label class="text-small text-uppercase" for="image2">Image 2</label>
                 <input class="form-control form-control-lg" id="image2" type="file">
@@ -144,6 +138,30 @@ include 'layout/header.php';
                 <label class="text-small text-uppercase" for="image4">Image 4</label>
                 <input class="form-control form-control-lg" id="image4" type="file">
               </div>
+              <div class="col-lg-6 form-group">
+                <div class="custom-control custom-checkbox">
+                  <input class="custom-control-input" id="alternateAddressCheckbox" type="checkbox">
+                  <label class="custom-control-label text-small" for="alternateAddressCheckbox">Digital Product</label>
+                </div>
+              </div>
+              <div class="col-lg-12">
+                <div class="row d-none" id="alternateAddress">
+                  <div class="col-12 mt-4">
+                    <h2 class="h4 text-uppercase mb-4">Digital Product</h2>
+                  </div>
+                  <div class="col-lg-6 form-group">
+                    <label class="text-small text-uppercase" for="uploadProduct">Upload Product</label>
+                    <input class="form-control form-control-lg" id="uploadProduct" type="file">
+                  </div>
+                  <div class="col-lg-6 form-group">
+                    <label class="text-small text-uppercase" for="download">Number of Downloads After Purchase</label>
+                    <input class="form-control form-control-lg" id="download" type="number" placeholder="Number of Downloads">
+                  </div>
+                </div>
+              </div>
+              <div class="col-lg-12 form-group">
+                  <button class="btn btn-dark" type="submit">Add Product</button>
+                </div>
             </div>
           </form>
         </div>

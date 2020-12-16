@@ -28,19 +28,19 @@ include 'layout/header.php'
           <div class="row">
             <div class="col-lg-6 form-group">
               <label class="text-small text-uppercase" for="firstName">First name</label>
-              <input class="form-control form-control-lg" id="firstName" type="text" placeholder="Enter your first name">
+              <input class="form-control form-control-lg" name="fname" id="firstName" type="text" placeholder="Enter your first name">
             </div>
             <div class="col-lg-6 form-group">
               <label class="text-small text-uppercase" for="lastName">Last name</label>
-              <input class="form-control form-control-lg" id="lastName" type="text" placeholder="Enter your last name">
+              <input class="form-control form-control-lg" name="lname" id="lastName" type="text" placeholder="Enter your last name">
             </div>
             <div class="col-lg-6 form-group">
               <label class="text-small text-uppercase" for="email">Email address</label>
-              <input class="form-control form-control-lg" id="email" type="email" placeholder="e.g. Jason@example.com">
+              <input class="form-control form-control-lg" name="email" id="email" type="email" placeholder="e.g. Jason@example.com">
             </div>
             <div class="col-lg-6 form-group">
               <label class="text-small text-uppercase" for="phone">Phone number</label>
-              <input class="form-control form-control-lg" id="phone" type="tel" placeholder="e.g. +02 245354745">
+              <input class="form-control form-control-lg" name="phone" id="phone" type="tel" placeholder="e.g. +02 245354745">
             </div>
             <div class="col-lg-6 form-group">
               <label class="text-small text-uppercase" for="password">Password</label>
@@ -52,11 +52,11 @@ include 'layout/header.php'
             </div>
             <div class="col-lg-12 form-group">
               <label class="text-small text-uppercase" for="country">Country</label>
-              <select class="selectpicker country" id="country" data-width="fit" data-style="form-control form-control-lg" data-title="Select your country"></select>
+              <select class="selectpicker country" name="country" id="country" data-width="fit" data-style="form-control form-control-lg" data-title="Select your country"></select>
             </div>
             <div class="col-lg-12 form-group">
               <label class="text-small text-uppercase" for="role">Role</label>
-              <select class="form-control" id="role">
+              <select class="form-control" id="role" name="role">
                 <option hidden>Select Role</option>
                 <option value="customer">Customer</option>
                 <option value="seller">Vendor/Seller</option>
@@ -69,7 +69,7 @@ include 'layout/header.php'
               <div class="row">
                 <div class="col-lg-12">
                   <label for="store">Store Name</label>
-                  <input type="text" class="form-control w-100" id="store">
+                  <input type="text" class="form-control w-100" id="store" name="store_name">
                 </div>
               </div>
             </div>
@@ -77,11 +77,11 @@ include 'layout/header.php'
               <div class="row">
                 <div class="col-6">
                   <label for="company">Company Name</label>
-                  <input type="text" class="form-control w-100" id="company">
+                  <input type="text" class="form-control w-100" name="company" id="company">
                 </div>
                 <div class="col-6">
                   <label for="product">Product Type</label>
-                  <input type="text" class="form-control w-100" id="product" placeholder="e.g Shoes, Bags, Hair">
+                  <input type="text" class="form-control w-100" name="product_type" id="product" placeholder="e.g Shoes, Bags, Hair">
                 </div>
               </div>
             </div>
@@ -89,7 +89,7 @@ include 'layout/header.php'
               <div class="row">
                 <div class="col-lg-12">
                   <label for="company">Company Name</label>
-                  <input type="text" class="form-control w-100" id="otherField1">
+                  <input type="text" class="form-control w-100" name="company" id="company">
                 </div>
               </div>
             </div>
