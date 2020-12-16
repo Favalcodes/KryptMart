@@ -50,28 +50,28 @@ contract ProductCreation is UserRegistration  {
         _;
     } 
 
-    modifier vendorAndManufacturerOnly () {
-        require(User[userToProfile[msg.sender]].role == UserType.manufacturer || User[userToProfile[msg.sender]].role == UserType.vendor, "You have to be registered as a manufacturer or vendor to add a product");
-        _;
-    }
+    // modifier vendorAndManufacturerOnly () {
+    //     assert(keccak256(abi.encodePacked((User[userToProfile[msg.sender]].role))) == keccak256(abi.encodePacked((UserType.manufacturer))) || keccak256(abi.encodePacked((User[userToProfile[msg.sender]].role))) == keccak256(abi.encodePacked((UserType.vendor))), "You have to be registered as a manufacturer or vendor to add a product");
+    //     _;
+    // }
     
-    modifier transportersOnly () {
-        require(User[userToProfile[msg.sender]].role == UserType.transporter, "You have to be registered as a transporter to add a transport service");
-        _;
-    } 
+    // modifier transportersOnly () {
+    //     require(User[userToProfile[msg.sender]].role == UserType.transporter, "You have to be registered as a transporter to add a transport service");
+    //     _;
+    // } 
 
-    function addProduct(string calldata _name, string calldata _description, uint _price) external usersOnly vendorAndManufacturerOnly {
+    function addProduct(string calldata _name, string calldata _description, uint _price) external usersOnly /*vendorAndManufacturerOnly*/ {
 
         products.push(Product(_name, _description, msg.sender ));
-        uint id = products.length.SUB(1);
+        uint id = products.length.sub(1);
         productToCreator[id] = msg.sender;
-        emit newProduct(id, _name, _description, msg.sender);
+        emit newProduct(id, _name, _description);
         addInventoryItem(id, _price);
 
     }
 
-    function addTransportService(string calldata _name, string calldata _description,uint _price) external usersOnly transportersOnly {
-        string memory providerName = User[userToProfile[msg.sender]].name;
+    function addTransportService(string calldata _name, string calldata _description,uint _price) external usersOnly /*transportersOnly*/ {
+        string calldata providerName = users[userToProfile[msg.sender]].name;
         transportServices.push(TransportService(_name, _description, providerName, _price ));
         uint id = transportServices.length - 1;
         transportServicesToProvider[id] = msg.sender;
@@ -79,7 +79,7 @@ contract ProductCreation is UserRegistration  {
 
     }
 
-    function addInventoryItem(uint _productId, uint _price) public usersOnly vendorAndManufacturerOnly {
+    function addInventoryItem(uint _productId, uint _price) public usersOnly /*vendorAndManufacturerOnly*/  {
 
         uint _moq = 1;        
 

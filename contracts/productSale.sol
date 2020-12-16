@@ -1,3 +1,4 @@
+// SPDX-License-Identifier: UNLICENSED
 pragma solidity ^0.6.0;
 
 import './productCreation.sol';
@@ -32,22 +33,24 @@ contract ProductSale is ProductCreation  {
         _;
     }
 
-    function orderProduct(uint itemID, uint quantity) payable external usersOnly _onSale(itemID) rightPrice(itemID, quantitiy) {
-        require(quantitiy >= 1, "You have not input a quantity");
-        vendorRole = users[userToProfile[vendorInventory[_itemId].seller]].role;
+    function orderProduct(uint itemID, uint quantity) payable external usersOnly _onSale(itemID) rightPrice(itemID, quantity) {
+        require(quantity >= 1, "You have not input a quantity");
+        UserType vendorRole = users[userToProfile[vendorInventory[itemID].seller]].role ;
         if (vendorRole == UserType.manufacturer ) {
-            require(quantitiy >= vendorInventory[itemID].minimumOrderQuantity, " Your order quantity is below the minimum order quantity" );
+            require(quantity >= vendorInventory[itemID].minimumOrderQuantity, " Your order quantity is below the minimum order quantity" );
         }
-        uint totalCharge = quantitiy.mul(vendorInventory[_itemId].price);
-        orders.push( ProductOrder(vendorInventory[itemID], quantitiy, totalCharge, msg.sender, ProductTransportStatus.awaitingPickUp));
+        uint totalCharge = quantity.mul(vendorInventory[itemID].price);
+        orders.push( ProductOrder(vendorInventory[itemID], quantity, totalCharge, msg.sender, ProductTransportStatus.awaitingPickUp));
         uint id = orders.length - 1;
         ordersMade[id] = msg.sender;
-        emit newOrder(id, vendorInventory[itemID].item.name,quantitiy, totalCharge,order[id].transportStatus, msg.sender );
+        emit newOrder(id, vendorInventory[itemID].item.name, quantity, totalCharge, orders[id].transportStatus, msg.sender );
 
     }   
 
     function acknowledgeReciept(uint orderId ) external usersOnly returns(string memory) {
         require(msg.sender == orders[orderId].orderedBy);
+        recipient = payable(orders[orderId].orderedItem.seller);
+        recipient.transfer(orders[orderId].cashPaid);
         orders[orderId].transportStatus = ProductTransportStatus.delivered;
         return ('Delivered successfully');
 
