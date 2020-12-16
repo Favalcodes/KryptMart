@@ -62,6 +62,7 @@ include 'layout/header.php';
           </div>
           <div class="tab-pane fade" id="product" role="tabpanel" aria-labelledby="product-tab">
             <div class="p-4 p-lg-5 bg-white">
+              <a class="btn btn-primary" href="#addProduct" data-toggle="modal">Add Product</a>
               <img src="img/nothing.svg" alt="No Order">
               <h3>No Product Yet, Start Selling</h3>
             </div>
@@ -85,6 +86,70 @@ include 'layout/header.php';
       </div>
     </div>
   </section>
+</div>
+
+<!-- Modals -->
+<!--  Product Modal -->
+<div class="modal fade" id="addProduct" tabindex="-1" role="dialog" aria-hidden="true">
+  <div class="modal-dialog modal-lg modal-dialog-centered" role="document">
+    <div class="modal-content">
+      <div class="modal-body p-0">
+        <button class="close p-4" type="button" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">×</span></button>
+        <div class="row align-items-stretch px-5 py-5">
+          <form action="">
+            <div class="row">
+              <div class="col-lg-6 form-group">
+                <label class="text-small text-uppercase" for="productName">Product Name</label>
+                <input class="form-control form-control-lg" id="productName" type="text" placeholder="Enter Product name">
+              </div>
+              <div class="col-lg-6 form-group">
+                <label class="text-small text-uppercase" for="category">Category</label>
+                <select class="selectpicker category form-control" id="category"></select>
+              </div>
+              <div class="col-lg-6 form-group">
+                <label class="text-small text-uppercase" for="amount">Amount</label>
+                <input class="form-control form-control-lg" id="amount" type="text" value="$">
+              </div>
+              <div class="col-lg-6 form-group">
+                <label class="text-small text-uppercase" for="discount">Discount</label>
+                <input class="form-control form-control-lg" id="discount" type="text" placeholder="%">
+              </div>
+              <div class="col-lg-12 form-group">
+                <label class="text-small text-uppercase" for="tag">Tags</label>
+                <input class="form-control form-control-lg" id="tag" type="text" placeholder="e.g book, bag,laptop">
+              </div>
+              <div class="col-lg-12 form-group">
+                <label class="text-small text-uppercase" for="description">Description</label>
+                <textarea name="desc" id="desc" cols="30" class="form-control" rows="10" placeholder="More info on Product"></textarea>
+              </div>
+              <div class="col-lg-6 form-group">
+                <label class="text-small text-uppercase" for="image1">Image</label>
+                <input class="form-control form-control-lg" id="image1" type="file">
+              </div>
+              <!-- <div class="col-lg-12 form-group">
+                <div class="custom-control custom-checkbox">
+                  <input class="custom-control-input" id="customCheck1" type="checkbox">
+                  <label class="custom-control-label" for="customCheck1">Add Image</label>
+                </div>
+              </div> -->
+              <div class="reveal col-lg-6 form-group">
+                <label class="text-small text-uppercase" for="image2">Image 2</label>
+                <input class="form-control form-control-lg" id="image2" type="file">
+              </div>
+              <div class="reveal col-lg-6 form-group">
+                <label class="text-small text-uppercase" for="image3">Image 3</label>
+                <input class="form-control form-control-lg" id="image3" type="file">
+              </div>
+              <div class="reveal col-lg-6 form-group">
+                <label class="text-small text-uppercase" for="image4">Image 4</label>
+                <input class="form-control form-control-lg" id="image4" type="file">
+              </div>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
 </div>
 <?php
 include 'layout/footer.php'
