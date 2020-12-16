@@ -7,6 +7,7 @@ contract ProductSale is ProductCreation  {
     address payable recipient;
 
     enum ProductTransportStatus{awaitingPickUp,inTransit, delivered}
+    enum ProductCondition{perfect, damaged}
 
     struct ProductOrder {
         VendorInventory orderedItem;
@@ -45,7 +46,11 @@ contract ProductSale is ProductCreation  {
 
     }   
 
-    
+    function acknowledgeReciept(uint orderId ) external usersOnly returns(string memory) {
+        require(msg.sender == orders[orderId].orderedBy);
+        orders[orderId].transportStatus = ProductTransportStatus.delivered;
+        return ('Delivered successfully')
 
+    }
 }    
    

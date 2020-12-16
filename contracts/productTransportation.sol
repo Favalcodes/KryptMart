@@ -4,7 +4,7 @@ import './productSale.sol';
 
 contract ProductTransportation is ProductSale  {
 
-    enum ProductCondition{perfect, damaged}
+    
 
     struct TransportNote{
         ProductOrder order
