@@ -1,3 +1,4 @@
+// SPDX-License-Identifier: UNLICENSED
 pragma solidity ^0.6.0;
 
 import './userRegistration.sol';
@@ -59,10 +60,10 @@ contract ProductCreation is UserRegistration  {
         _;
     } 
 
-    function addProduct(string calldata _name, string calldata _description uint _price) external usersOnly vendorAndManufacturerOnly {
+    function addProduct(string calldata _name, string calldata _description, uint _price) external usersOnly vendorAndManufacturerOnly {
 
         products.push(Product(_name, _description, msg.sender ));
-        uint id = properties.length - 1;
+        uint id = products.length.SUB(1);
         productToCreator[id] = msg.sender;
         emit newProduct(id, _name, _description, msg.sender);
         addInventoryItem(id, _price);
@@ -70,7 +71,7 @@ contract ProductCreation is UserRegistration  {
     }
 
     function addTransportService(string calldata _name, string calldata _description,uint _price) external usersOnly transportersOnly {
-        string providerName = User[userToProfile[msg.sender]].name;
+        string memory providerName = User[userToProfile[msg.sender]].name;
         transportServices.push(TransportService(_name, _description, providerName, _price ));
         uint id = transportServices.length - 1;
         transportServicesToProvider[id] = msg.sender;

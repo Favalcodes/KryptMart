@@ -1,3 +1,4 @@
+// SPDX-License-Identifier: UNLICENSED
 pragma solidity ^0.6.0;
 
 contract UserRegistration {
@@ -37,11 +38,11 @@ contract UserRegistration {
         emit newUser(id,_name,_description,_role);
     }
     
-    function viewUser(uint _userId) public view returns(string memory, string memory,UserType memory) public view {
-        
+    function viewUser(uint _userId) public view returns(string memory, string memory, UserType ) {
+
         string memory _name = users[_userId].name;
-        string  memory _description = users[_userId].description;
-        string memory _role = users[_userId].role;
+        string memory _description = users[_userId].description;
+        UserType _role = users[_userId].role;
        
         return(_name,_description,_role);
     }

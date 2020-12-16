@@ -20,7 +20,7 @@ contract ProductSale is ProductCreation  {
     ProductOrder[] orders;
     mapping (uint => address) ordersMade;
     
-    event newOrder(uint _id, string name, uint itemNumber, uint amountPaid, ProductTransportStatus orderStatus address new_owner);
+    event newOrder(uint _id, string name, uint itemNumber, uint amountPaid, ProductTransportStatus orderStatus, address new_owner);
 
     modifier rightPrice (uint _itemId, uint _quantity) {
         require(msg.value == _quantity.mul(vendorInventory[_itemId].price), "You have to input the right amount");
@@ -33,23 +33,23 @@ contract ProductSale is ProductCreation  {
     }
 
     function orderProduct(uint itemID, uint quantity) payable external usersOnly _onSale(itemID) rightPrice(itemID, quantitiy) {
-        require(quantitiy => 1, "You have not input a quantity");
+        require(quantitiy >= 1, "You have not input a quantity");
         vendorRole = users[userToProfile[vendorInventory[_itemId].seller]].role;
         if (vendorRole == UserType.manufacturer ) {
-            require(quantitiy => vendorInventory[itemID].minimumOrderQuantity, " Your order quantity is below the minimum order quantity" );
+            require(quantitiy >= vendorInventory[itemID].minimumOrderQuantity, " Your order quantity is below the minimum order quantity" );
         }
         uint totalCharge = quantitiy.mul(vendorInventory[_itemId].price);
         orders.push( ProductOrder(vendorInventory[itemID], quantitiy, totalCharge, msg.sender, ProductTransportStatus.awaitingPickUp));
-        uint id orders.length - 1;
+        uint id = orders.length - 1;
         ordersMade[id] = msg.sender;
-        emit newOrder(id, vendorInventory[itemID].item.name,quantitiy, totalCharge,order[id].transportStatus, msg.sender )
+        emit newOrder(id, vendorInventory[itemID].item.name,quantitiy, totalCharge,order[id].transportStatus, msg.sender );
 
     }   
 
     function acknowledgeReciept(uint orderId ) external usersOnly returns(string memory) {
         require(msg.sender == orders[orderId].orderedBy);
         orders[orderId].transportStatus = ProductTransportStatus.delivered;
-        return ('Delivered successfully')
+        return ('Delivered successfully');
 
     }
 }    

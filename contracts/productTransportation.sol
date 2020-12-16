@@ -7,7 +7,7 @@ contract ProductTransportation is ProductSale  {
     
 
     struct TransportNote{
-        ProductOrder order
+        ProductOrder order;
         ProductTransportStatus transportStatus;
         ProductCondition condition;
         TransportService service;
