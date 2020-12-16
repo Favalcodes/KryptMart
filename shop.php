@@ -1,6 +1,38 @@
 <?php
 include 'layout/header.php';
 ?>
+<!--  Modal -->
+<div class="modal fade" id="productView" tabindex="-1" role="dialog" aria-hidden="true">
+  <div class="modal-dialog modal-lg modal-dialog-centered" role="document">
+    <div class="modal-content">
+      <div class="modal-body p-0">
+        <div class="row align-items-stretch">
+          <div class="col-lg-6 p-lg-0"><a class="product-view d-block h-100 bg-cover bg-center" style="background: url(img/product-5.jpg)"></a></div>
+          <div class="col-lg-6">
+            <button class="close p-4" type="button" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">×</span></button>
+            <div class="p-5 my-md-4">
+              <div class="row align-items-stretch mb-4">
+                <div class="col-sm-7 pr-sm-0">
+                  <div class="border d-flex align-items-center justify-content-between py-1 px-3"><span class="small text-uppercase text-gray mr-4 no-select">Quantity</span>
+                    <div class="quantity">
+                      <button class="dec-btn p-0"><i class="fas fa-caret-left"></i></button>
+                      <input class="form-control border-0 shadow-0 p-0" type="text" value="1">
+                      <button class="inc-btn p-0"><i class="fas fa-caret-right"></i></button>
+                    </div>
+                  </div>
+                </div>
+                <div class="col-sm-5 pl-sm-0"><a class="btn btn-dark btn-sm btn-block h-100 d-flex align-items-center justify-content-center px-0" href="cart.php">Add to Cart</a></div>
+              </div>
+              <a class="btn btn-link text-dark p-0" href="#"><i class="far fa-heart mr-2"></i>Add to wish
+                list</a>
+                <a class="btn btn-dark btn-sm btn-block h-100 d-flex align-items-center justify-content-center px-0 mt-5" href="detail.php">See Descriptiion</a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
     <div class="container">
       <!-- HERO SECTION-->
       <section class="py-5 bg-light">
@@ -12,7 +44,7 @@ include 'layout/header.php';
             <div class="col-lg-6 text-lg-right">
               <nav aria-label="breadcrumb">
                 <ol class="breadcrumb justify-content-lg-end mb-0 px-0">
-                  <li class="breadcrumb-item"><a href="index.html">Home</a></li>
+                  <li class="breadcrumb-item"><a href="index.php">Home</a></li>
                   <li class="breadcrumb-item active" aria-current="page">Shop</li>
                 </ol>
               </nav>
@@ -136,20 +168,20 @@ include 'layout/header.php';
                 <div class="col-lg-4 col-sm-6">
                   <div class="product text-center">
                     <div class="mb-3 position-relative">
-                      <div class="badge text-white badge-"></div><a class="d-block" href="detail.html"><img
+                      <div class="badge text-white badge-"></div><a class="d-block" href="detail.php"><img
                           class="img-fluid w-100" src="img/product-1.jpg" alt="..."></a>
                       <div class="product-overlay">
                         <ul class="mb-0 list-inline">
                           <li class="list-inline-item m-0 p-0"><a class="btn btn-sm btn-outline-dark" href="#"><i
                                 class="far fa-heart"></i></a></li>
-                          <li class="list-inline-item m-0 p-0"><a class="btn btn-sm btn-dark" href="cart.html">Add to
+                          <li class="list-inline-item m-0 p-0"><a class="btn btn-sm btn-dark" href="cart.php">Add to
                               cart</a></li>
                           <li class="list-inline-item mr-0"><a class="btn btn-sm btn-outline-dark" href="#productView"
                               data-toggle="modal"><i class="fas fa-expand"></i></a></li>
                         </ul>
                       </div>
                     </div>
-                    <h6> <a class="reset-anchor" href="detail.html">Kui Ye Chen’s AirPods</a></h6>
+                    <h6> <a class="reset-anchor" href="detail.php">Kui Ye Chen’s AirPods</a></h6>
                     <p class="small text-muted">$250</p>
                   </div>
                 </div>
@@ -157,20 +189,20 @@ include 'layout/header.php';
                 <div class="col-lg-4 col-sm-6">
                   <div class="product text-center">
                     <div class="mb-3 position-relative">
-                      <div class="badge text-white badge-"></div><a class="d-block" href="detail.html"><img
+                      <div class="badge text-white badge-"></div><a class="d-block" href="detail.php"><img
                           class="img-fluid w-100" src="img/product-2.jpg" alt="..."></a>
                       <div class="product-overlay">
                         <ul class="mb-0 list-inline">
                           <li class="list-inline-item m-0 p-0"><a class="btn btn-sm btn-outline-dark" href="#"><i
                                 class="far fa-heart"></i></a></li>
-                          <li class="list-inline-item m-0 p-0"><a class="btn btn-sm btn-dark" href="cart.html">Add to
+                          <li class="list-inline-item m-0 p-0"><a class="btn btn-sm btn-dark" href="cart.php">Add to
                               cart</a></li>
                           <li class="list-inline-item mr-0"><a class="btn btn-sm btn-outline-dark" href="#productView"
                               data-toggle="modal"><i class="fas fa-expand"></i></a></li>
                         </ul>
                       </div>
                     </div>
-                    <h6> <a class="reset-anchor" href="detail.html">Air Jordan 12 gym red</a></h6>
+                    <h6> <a class="reset-anchor" href="detail.php">Air Jordan 12 gym red</a></h6>
                     <p class="small text-muted">$300</p>
                   </div>
                 </div>
@@ -178,20 +210,20 @@ include 'layout/header.php';
                 <div class="col-lg-4 col-sm-6">
                   <div class="product text-center">
                     <div class="mb-3 position-relative">
-                      <div class="badge text-white badge-primary">New</div><a class="d-block" href="detail.html"><img
+                      <div class="badge text-white badge-primary">New</div><a class="d-block" href="detail.php"><img
                           class="img-fluid w-100" src="img/product-3.jpg" alt="..."></a>
                       <div class="product-overlay">
                         <ul class="mb-0 list-inline">
                           <li class="list-inline-item m-0 p-0"><a class="btn btn-sm btn-outline-dark" href="#"><i
                                 class="far fa-heart"></i></a></li>
-                          <li class="list-inline-item m-0 p-0"><a class="btn btn-sm btn-dark" href="cart.html">Add to
+                          <li class="list-inline-item m-0 p-0"><a class="btn btn-sm btn-dark" href="cart.php">Add to
                               cart</a></li>
                           <li class="list-inline-item mr-0"><a class="btn btn-sm btn-outline-dark" href="#productView"
                               data-toggle="modal"><i class="fas fa-expand"></i></a></li>
                         </ul>
                       </div>
                     </div>
-                    <h6> <a class="reset-anchor" href="detail.html">Cyan cotton t-shirt</a></h6>
+                    <h6> <a class="reset-anchor" href="detail.php">Cyan cotton t-shirt</a></h6>
                     <p class="small text-muted">$25</p>
                   </div>
                 </div>
@@ -199,20 +231,20 @@ include 'layout/header.php';
                 <div class="col-lg-4 col-sm-6">
                   <div class="product text-center">
                     <div class="mb-3 position-relative">
-                      <div class="badge text-white badge-"></div><a class="d-block" href="detail.html"><img
+                      <div class="badge text-white badge-"></div><a class="d-block" href="detail.php"><img
                           class="img-fluid w-100" src="img/product-4.jpg" alt="..."></a>
                       <div class="product-overlay">
                         <ul class="mb-0 list-inline">
                           <li class="list-inline-item m-0 p-0"><a class="btn btn-sm btn-outline-dark" href="#"><i
                                 class="far fa-heart"></i></a></li>
-                          <li class="list-inline-item m-0 p-0"><a class="btn btn-sm btn-dark" href="cart.html">Add to
+                          <li class="list-inline-item m-0 p-0"><a class="btn btn-sm btn-dark" href="cart.php">Add to
                               cart</a></li>
                           <li class="list-inline-item mr-0"><a class="btn btn-sm btn-outline-dark" href="#productView"
                               data-toggle="modal"><i class="fas fa-expand"></i></a></li>
                         </ul>
                       </div>
                     </div>
-                    <h6> <a class="reset-anchor" href="detail.html">Timex Unisex Originals</a></h6>
+                    <h6> <a class="reset-anchor" href="detail.php">Timex Unisex Originals</a></h6>
                     <p class="small text-muted">$351</p>
                   </div>
                 </div>
@@ -220,20 +252,20 @@ include 'layout/header.php';
                 <div class="col-lg-4 col-sm-6">
                   <div class="product text-center">
                     <div class="mb-3 position-relative">
-                      <div class="badge text-white badge-info">Sale</div><a class="d-block" href="detail.html"><img
+                      <div class="badge text-white badge-info">Sale</div><a class="d-block" href="detail.php"><img
                           class="img-fluid w-100" src="img/product-5.jpg" alt="..."></a>
                       <div class="product-overlay">
                         <ul class="mb-0 list-inline">
                           <li class="list-inline-item m-0 p-0"><a class="btn btn-sm btn-outline-dark" href="#"><i
                                 class="far fa-heart"></i></a></li>
-                          <li class="list-inline-item m-0 p-0"><a class="btn btn-sm btn-dark" href="cart.html">Add to
+                          <li class="list-inline-item m-0 p-0"><a class="btn btn-sm btn-dark" href="cart.php">Add to
                               cart</a></li>
                           <li class="list-inline-item mr-0"><a class="btn btn-sm btn-outline-dark" href="#productView"
                               data-toggle="modal"><i class="fas fa-expand"></i></a></li>
                         </ul>
                       </div>
                     </div>
-                    <h6> <a class="reset-anchor" href="detail.html">Red digital smartwatch</a></h6>
+                    <h6> <a class="reset-anchor" href="detail.php">Red digital smartwatch</a></h6>
                     <p class="small text-muted">$250</p>
                   </div>
                 </div>
@@ -241,20 +273,20 @@ include 'layout/header.php';
                 <div class="col-lg-4 col-sm-6">
                   <div class="product text-center">
                     <div class="mb-3 position-relative">
-                      <div class="badge text-white badge-"></div><a class="d-block" href="detail.html"><img
+                      <div class="badge text-white badge-"></div><a class="d-block" href="detail.php"><img
                           class="img-fluid w-100" src="img/product-6.jpg" alt="..."></a>
                       <div class="product-overlay">
                         <ul class="mb-0 list-inline">
                           <li class="list-inline-item m-0 p-0"><a class="btn btn-sm btn-outline-dark" href="#"><i
                                 class="far fa-heart"></i></a></li>
-                          <li class="list-inline-item m-0 p-0"><a class="btn btn-sm btn-dark" href="cart.html">Add to
+                          <li class="list-inline-item m-0 p-0"><a class="btn btn-sm btn-dark" href="cart.php">Add to
                               cart</a></li>
                           <li class="list-inline-item mr-0"><a class="btn btn-sm btn-outline-dark" href="#productView"
                               data-toggle="modal"><i class="fas fa-expand"></i></a></li>
                         </ul>
                       </div>
                     </div>
-                    <h6> <a class="reset-anchor" href="detail.html">Nike air max 95</a></h6>
+                    <h6> <a class="reset-anchor" href="detail.php">Nike air max 95</a></h6>
                     <p class="small text-muted">$300</p>
                   </div>
                 </div>
@@ -262,20 +294,20 @@ include 'layout/header.php';
                 <div class="col-lg-4 col-sm-6">
                   <div class="product text-center">
                     <div class="mb-3 position-relative">
-                      <div class="badge text-white badge-"></div><a class="d-block" href="detail.html"><img
+                      <div class="badge text-white badge-"></div><a class="d-block" href="detail.php"><img
                           class="img-fluid w-100" src="img/product-7.jpg" alt="..."></a>
                       <div class="product-overlay">
                         <ul class="mb-0 list-inline">
                           <li class="list-inline-item m-0 p-0"><a class="btn btn-sm btn-outline-dark" href="#"><i
                                 class="far fa-heart"></i></a></li>
-                          <li class="list-inline-item m-0 p-0"><a class="btn btn-sm btn-dark" href="cart.html">Add to
+                          <li class="list-inline-item m-0 p-0"><a class="btn btn-sm btn-dark" href="cart.php">Add to
                               cart</a></li>
                           <li class="list-inline-item mr-0"><a class="btn btn-sm btn-outline-dark" href="#productView"
                               data-toggle="modal"><i class="fas fa-expand"></i></a></li>
                         </ul>
                       </div>
                     </div>
-                    <h6> <a class="reset-anchor" href="detail.html">Joemalone Women prefume</a></h6>
+                    <h6> <a class="reset-anchor" href="detail.php">Joemalone Women prefume</a></h6>
                     <p class="small text-muted">$25</p>
                   </div>
                 </div>
@@ -283,20 +315,20 @@ include 'layout/header.php';
                 <div class="col-lg-4 col-sm-6">
                   <div class="product text-center">
                     <div class="mb-3 position-relative">
-                      <div class="badge text-white badge-"></div><a class="d-block" href="detail.html"><img
+                      <div class="badge text-white badge-"></div><a class="d-block" href="detail.php"><img
                           class="img-fluid w-100" src="img/product-8.jpg" alt="..."></a>
                       <div class="product-overlay">
                         <ul class="mb-0 list-inline">
                           <li class="list-inline-item m-0 p-0"><a class="btn btn-sm btn-outline-dark" href="#"><i
                                 class="far fa-heart"></i></a></li>
-                          <li class="list-inline-item m-0 p-0"><a class="btn btn-sm btn-dark" href="cart.html">Add to
+                          <li class="list-inline-item m-0 p-0"><a class="btn btn-sm btn-dark" href="cart.php">Add to
                               cart</a></li>
                           <li class="list-inline-item mr-0"><a class="btn btn-sm btn-outline-dark" href="#productView"
                               data-toggle="modal"><i class="fas fa-expand"></i></a></li>
                         </ul>
                       </div>
                     </div>
-                    <h6> <a class="reset-anchor" href="detail.html">Apple Watch</a></h6>
+                    <h6> <a class="reset-anchor" href="detail.php">Apple Watch</a></h6>
                     <p class="small text-muted">$351</p>
                   </div>
                 </div>
@@ -304,20 +336,20 @@ include 'layout/header.php';
                 <div class="col-lg-4 col-sm-6">
                   <div class="product text-center">
                     <div class="mb-3 position-relative">
-                      <div class="badge text-white badge-danger">Sold</div><a class="d-block" href="detail.html"><img
+                      <div class="badge text-white badge-danger">Sold</div><a class="d-block" href="detail.php"><img
                           class="img-fluid w-100" src="img/product-9.jpg" alt="..."></a>
                       <div class="product-overlay">
                         <ul class="mb-0 list-inline">
                           <li class="list-inline-item m-0 p-0"><a class="btn btn-sm btn-outline-dark" href="#"><i
                                 class="far fa-heart"></i></a></li>
-                          <li class="list-inline-item m-0 p-0"><a class="btn btn-sm btn-dark" href="cart.html">Add to
+                          <li class="list-inline-item m-0 p-0"><a class="btn btn-sm btn-dark" href="cart.php">Add to
                               cart</a></li>
                           <li class="list-inline-item mr-0"><a class="btn btn-sm btn-outline-dark" href="#productView"
                               data-toggle="modal"><i class="fas fa-expand"></i></a></li>
                         </ul>
                       </div>
                     </div>
-                    <h6> <a class="reset-anchor" href="detail.html">Men silver Byron Watch</a></h6>
+                    <h6> <a class="reset-anchor" href="detail.php">Men silver Byron Watch</a></h6>
                     <p class="small text-muted">$351</p>
                   </div>
                 </div>
@@ -325,20 +357,20 @@ include 'layout/header.php';
                 <div class="col-lg-4 col-sm-6">
                   <div class="product text-center">
                     <div class="mb-3 position-relative">
-                      <div class="badge text-white badge-primary">New</div><a class="d-block" href="detail.html"><img
+                      <div class="badge text-white badge-primary">New</div><a class="d-block" href="detail.php"><img
                           class="img-fluid w-100" src="img/product-10.jpg" alt="..."></a>
                       <div class="product-overlay">
                         <ul class="mb-0 list-inline">
                           <li class="list-inline-item m-0 p-0"><a class="btn btn-sm btn-outline-dark" href="#"><i
                                 class="far fa-heart"></i></a></li>
-                          <li class="list-inline-item m-0 p-0"><a class="btn btn-sm btn-dark" href="cart.html">Add to
+                          <li class="list-inline-item m-0 p-0"><a class="btn btn-sm btn-dark" href="cart.php">Add to
                               cart</a></li>
                           <li class="list-inline-item mr-0"><a class="btn btn-sm btn-outline-dark" href="#productView"
                               data-toggle="modal"><i class="fas fa-expand"></i></a></li>
                         </ul>
                       </div>
                     </div>
-                    <h6> <a class="reset-anchor" href="detail.html">Ploaroid one step camera</a></h6>
+                    <h6> <a class="reset-anchor" href="detail.php">Ploaroid one step camera</a></h6>
                     <p class="small text-muted">$351</p>
                   </div>
                 </div>
@@ -346,20 +378,20 @@ include 'layout/header.php';
                 <div class="col-lg-4 col-sm-6">
                   <div class="product text-center">
                     <div class="mb-3 position-relative">
-                      <div class="badge text-white badge-"></div><a class="d-block" href="detail.html"><img
+                      <div class="badge text-white badge-"></div><a class="d-block" href="detail.php"><img
                           class="img-fluid w-100" src="img/product-11.jpg" alt="..."></a>
                       <div class="product-overlay">
                         <ul class="mb-0 list-inline">
                           <li class="list-inline-item m-0 p-0"><a class="btn btn-sm btn-outline-dark" href="#"><i
                                 class="far fa-heart"></i></a></li>
-                          <li class="list-inline-item m-0 p-0"><a class="btn btn-sm btn-dark" href="cart.html">Add to
+                          <li class="list-inline-item m-0 p-0"><a class="btn btn-sm btn-dark" href="cart.php">Add to
                               cart</a></li>
                           <li class="list-inline-item mr-0"><a class="btn btn-sm btn-outline-dark" href="#productView"
                               data-toggle="modal"><i class="fas fa-expand"></i></a></li>
                         </ul>
                       </div>
                     </div>
-                    <h6> <a class="reset-anchor" href="detail.html">Gray Nike running shoes</a></h6>
+                    <h6> <a class="reset-anchor" href="detail.php">Gray Nike running shoes</a></h6>
                     <p class="small text-muted">$351</p>
                   </div>
                 </div>
@@ -367,20 +399,20 @@ include 'layout/header.php';
                 <div class="col-lg-4 col-sm-6">
                   <div class="product text-center">
                     <div class="mb-3 position-relative">
-                      <div class="badge text-white badge-"></div><a class="d-block" href="detail.html"><img
+                      <div class="badge text-white badge-"></div><a class="d-block" href="detail.php"><img
                           class="img-fluid w-100" src="img/product-12.jpg" alt="..."></a>
                       <div class="product-overlay">
                         <ul class="mb-0 list-inline">
                           <li class="list-inline-item m-0 p-0"><a class="btn btn-sm btn-outline-dark" href="#"><i
                                 class="far fa-heart"></i></a></li>
-                          <li class="list-inline-item m-0 p-0"><a class="btn btn-sm btn-dark" href="cart.html">Add to
+                          <li class="list-inline-item m-0 p-0"><a class="btn btn-sm btn-dark" href="cart.php">Add to
                               cart</a></li>
                           <li class="list-inline-item mr-0"><a class="btn btn-sm btn-outline-dark" href="#productView"
                               data-toggle="modal"><i class="fas fa-expand"></i></a></li>
                         </ul>
                       </div>
                     </div>
-                    <h6> <a class="reset-anchor" href="detail.html">Black DSLR lense</a></h6>
+                    <h6> <a class="reset-anchor" href="detail.php">Black DSLR lense</a></h6>
                     <p class="small text-muted">$351</p>
                   </div>
                 </div>

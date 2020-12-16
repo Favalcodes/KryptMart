@@ -1,5 +1,5 @@
 <?php
-include './layout/header.php'
+include 'layout/header.php'
 ?>
     <div class="container">
       <!-- HERO SECTION-->
@@ -7,7 +7,7 @@ include './layout/header.php'
         <div class="container">
           <div class="row px-4 px-lg-5 py-lg-4 align-items-center">
             <div class="col-lg-6">
-              <h1 class="h2 text-uppercase mb-0">Add Admin</h1>
+              <h1 class="h2 text-uppercase mb-0">Login</h1>
             </div>
             <div class="col-lg-6 text-lg-right">
               <nav aria-label="breadcrumb">
@@ -70,8 +70,8 @@ include './layout/header.php'
           <div class="col-lg-4">
             <div class="card border-0 rounded-0 p-lg-4 bg-light">
               <div class="card-body">
-                <h5 class="text-uppercase mb-4">Note</h5>
-                <p>This section is only for KryptMart Administrators, only go through if you are an admin or go back to <a href="index.html">Home</a> if you are not.</p>
+                <p>Already Having an account?</p>
+                <a class="btn btn-dark" href="login.php">Login</a>
               </div>
             </div>
           </div>
@@ -79,5 +79,5 @@ include './layout/header.php'
       </section>
     </div>
     <?php
-    include './layout/footer.php';
+    include 'layout/footer.php';
     ?>
