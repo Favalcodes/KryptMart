@@ -1,5 +1,5 @@
 <?php
-include './layout/header.php'
+include 'layout/header.php'
 ?>
     <div class="container">
       <!-- HERO SECTION-->
@@ -79,5 +79,5 @@ include './layout/header.php'
       </section>
     </div>
     <?php
-    include './layout/footer.php';
+    include 'layout/footer.php';
     ?>

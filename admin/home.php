@@ -26,35 +26,63 @@ include 'layout/header.php';
       <div class="col-lg-8">
         <ul class="nav nav-tabs border-0" id="myTab" role="tablist" aria-orientation="vertical">
           <li class="nav-item"><a class="nav-link active" id="description-tab" data-toggle="tab" href="#description" role="tab" aria-controls="description" aria-selected="true">Account</a></li>
-          <li class="nav-item"><a class="nav-link" id="reviews-tab" data-toggle="tab" href="#reviews" role="tab" aria-controls="reviews" aria-selected="false">Orders</a></li>
-          <li class="nav-item"><a class="nav-link" id="save-tab" data-toggle="tab" href="#save" role="tab" aria-controls="save" aria-selected="false">Saved Items</a></li>
+          <li class="nav-item"><a class="nav-link" id="reviews-tab" data-toggle="tab" href="#reviews" role="tab" aria-controls="reviews" aria-selected="false">Customers</a></li>
+          <li class="nav-item"><a class="nav-link" id="save-tab" data-toggle="tab" href="#save" role="tab" aria-controls="save" aria-selected="false">Sellers</a></li>
+          <li class="nav-item"><a class="nav-link" id="product-tab" data-toggle="tab" href="#product" role="tab" aria-controls="product" aria-selected="false">Manufacturers</a></li>
+          <li class="nav-item"><a class="nav-link" id="merch-tab" data-toggle="tab" href="#merch" role="tab" aria-controls="merch" aria-selected="false">Merchants</a></li>
         </ul>
         <div class="tab-content mb-5" id="myTabContent">
           <div class="tab-pane fade show active" id="description" role="tabpanel" aria-labelledby="description-tab">
             <div class="p-4 p-lg-5 bg-white">
               <h6 class="text-uppercase">Account Details </h6>
-              <label class="text-small text-uppercase" for="firstName">First name:</label>
-              <p>Favour</p>
-              <label class="text-small text-uppercase" for="firstName">Last name:</label>
-              <p>Arua</p>
-              <label class="text-small text-uppercase" for="firstName">Email:</label>
-              <p>favour@mail.com</p>
-              <label class="text-small text-uppercase" for="firstName">Phone Number:</label>
-              <p>+234 999766</p>
-              <label class="text-small text-uppercase" for="firstName">Country:</label>
-              <p>Nigeria</p>
+              <div class="row">
+                <div class="col-lg-6">
+                  <label class="text-small text-uppercase" for="firstName">First name:</label>
+                  <p>Favour</p>
+                </div>
+                <div class="col-lg-6">
+                  <label class="text-small text-uppercase" for="lastName">Last name:</label>
+                  <p>Arua</p>
+                </div>
+              </div>
+              <div class="row">
+                <div class="col-lg-6">
+                  <label class="text-small text-uppercase" for="email">Email:</label>
+                  <p>favour@mail.com</p>
+                </div>
+                <div class="col-lg-6">
+                  <label class="text-small text-uppercase" for="company">Role:</label>
+                  <p>Super Admin</p>
+                </div>
+              </div>
+              <div class="stat mt-4">
+                <img src="img/nothing.svg" alt="No Order">
+                <h3>No Stat Yet</h3>
+              </div>
             </div>
           </div>
           <div class="tab-pane fade" id="reviews" role="tabpanel" aria-labelledby="reviews-tab">
             <div class="p-4 p-lg-5 bg-white">
               <img src="img/nothing.svg" alt="No Order">
-              <h3>No Order Yet</h3>
+              <h3>No Customer Yet</h3>
             </div>
           </div>
           <div class="tab-pane fade" id="save" role="tabpanel" aria-labelledby="save-tab">
             <div class="p-4 p-lg-5 bg-white">
               <img src="img/nothing.svg" alt="No Order">
-              <h3>You haven't Saved Anything Yet</h3>
+              <h3>No Vendor Yet</h3>
+            </div>
+          </div>
+          <div class="tab-pane fade" id="product" role="tabpanel" aria-labelledby="product-tab">
+            <div class="p-4 p-lg-5 bg-white">
+              <img src="img/nothing.svg" alt="No Order">
+              <h3>No Manufacturer Yet</h3>
+            </div>
+          </div>
+          <div class="tab-pane fade" id="merch" role="tabpanel" aria-labelledby="merch-tab">
+            <div class="p-4 p-lg-5 bg-white">
+              <img src="img/nothing.svg" alt="No Order">
+              <h3>No Merchant Yet</h3>
             </div>
           </div>
         </div>
@@ -69,6 +97,8 @@ include 'layout/header.php';
             <a href="#" class="btn">Change Email</a>
             <hr>
             <a href="#" class="btn">Change Phone Number</a>
+            <hr>
+            <a href="#" class="btn">Add Admin</a>
             <hr>
             <a class="btn btn-link p-0 text-dark btn-sm" href="deliver.php">See Delivery Merchants <i class="fas fa-long-arrow-alt-right mr-2"> </i></a>
           </div>
