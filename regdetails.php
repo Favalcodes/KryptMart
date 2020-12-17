@@ -10,8 +10,8 @@ if (isset($_SESSION["id"])) {
 }
 
 // Define variables and initialize with empty values
-$fname = $lname = $email = $password = $confirm_password = $phone = $country = $role = $store_name = $company = $product_type = $comp = "";
-$fname_err = $lname_err = $email_err = $password_err = $confirm_password_err = $phone_err = $country_err = $role_err = $store_name_err = $company_err = $product_type_err = $comp_err = "";
+$fname = $lname = $email = $password = $confirm_password = $phone = $country = $role = $username = $store_name = $company = $product_type = $comp = "";
+$fname_err = $lname_err = $email_err = $password_err = $confirm_password_err = $phone_err = $country_err = $role_err = $username_err = $store_name_err = $company_err = $product_type_err = $comp_err = "";
 
 // Processing form data when form is submitted
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
@@ -208,6 +208,34 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     }
   }
 
+  // Validate Username
+  if (empty(trim($_POST["username"]))) {
+    $username_err = "Please enter your Username.";
+  } else {
+    // Prepare a select statement
+    $sql = "SELECT id FROM users WHERE username = ?";
+
+    if ($stmt = mysqli_prepare($link, $sql)) {
+      // Bind variables to the prepared statement as parameters
+      mysqli_stmt_bind_param($stmt, "s", $param_username);
+
+      // Set parameters
+      $param_username = trim($_POST["username"]);
+
+      // Attempt to execute the prepared statement
+      if (mysqli_stmt_execute($stmt)) {
+        /* store result */
+        mysqli_stmt_store_result($stmt);
+        $username = trim($_POST["username"]);
+      } else {
+        echo "Oops! Something went wrong. Please try again later.";
+      }
+
+      // Close statement
+      mysqli_stmt_close($stmt);
+    }
+  }
+
   // Validate Store Name
   if (empty(trim($_POST["store_name"]))) {
     $store_name_err = "Please enter your Store Name.";
@@ -324,11 +352,11 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
   if (empty($fname_err) && empty($lname_err) && empty($email_err) && empty($password_err) && empty($confirm_password_err) && empty($phone_err) && empty($country_err) && empty($role_err) && empty($comp_err)) {
 
     // Prepare an insert statement
-    $sql = "INSERT INTO users (fname, lname, email, password, phone, country, role, store_name, company, product_type, comp) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
+    $sql = "INSERT INTO users (fname, lname, email, password, phone, country, role, username, store_name, company, product_type, comp) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
 
     if ($stmt = mysqli_prepare($link, $sql)) {
       // Bind variables to the prepared statement as parameters
-      mysqli_stmt_bind_param($stmt, "sssssssssss", $param_fname, $param_lname, $param_email, $param_password, $param_phone, $param_country, $param_role, $param_store_name, $param_company, $param_product_type, $param_comp);
+      mysqli_stmt_bind_param($stmt, "ssssssssssss", $param_fname, $param_lname, $param_email, $param_password, $param_phone, $param_country, $param_role, $param_username, $param_store_name, $param_company, $param_product_type, $param_comp);
 
       // Set parameters
       $param_fname = $fname;
@@ -338,6 +366,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
       $param_phone = $phone;
       $param_country = $country;
       $param_role = $role;
+      $param_username = $username;
       $param_store_name = $store_name;
       $param_company = $company;
       $param_comp = $comp;

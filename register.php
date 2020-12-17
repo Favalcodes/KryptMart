@@ -3,6 +3,8 @@
 // include php for registration
 include 'regdetails.php';
 
+print_r($role);
+
 // include header
 include 'layout/header.php';
 ?>
@@ -78,6 +80,15 @@ include 'layout/header.php';
               <span class="help-block"><?php echo $role_err; ?></span>
             </div>
 
+            <div class="col-lg-12 form-group" id="buyer">
+              <div class="row">
+                <div class="col-lg-12 <?php echo (!empty($username_err)) ? 'has-error' : ''; ?>">
+                <label for="welcome">Username</label>
+                  <input type="text" class="form-control border-none w-100" id="welcome" name="username" placeholder="Please Put your username">
+                  <span class="help-block"><?php echo $username_err; ?></span>
+                </div>
+              </div>
+            </div>
             <div class="col-lg-12 form-group" id="seller">
               <div class="row">
                 <div class="col-lg-12 <?php echo (!empty($store_name_err)) ? 'has-error' : ''; ?>">

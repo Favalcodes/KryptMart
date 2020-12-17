@@ -56,12 +56,32 @@
             <ul class="navbar-nav ml-auto">
               <li class="nav-item"><a class="nav-link" href="cart.php"> <i
                     class="fas fa-dolly-flatbed mr-1 text-gray"></i>Cart<small class="text-gray">(0)</small></a></li>
+            <?php
+// SQL query to select data from database 
+$sql = "SELECT * FROM users where id = $_SESSION[id]";
+$output = $link->query($sql) or die("Error: " . mysqli_error($link));
+
+      if (isset($_SESSION["loggedin"]) && $_SESSION["loggedin"] === true)  {
+        while ($tablerows = mysqli_fetch_array($output)) {
+      ?>
+            <li class="nav-item dropdown">
+              <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                <?php echo $tablerows['fname'] ?>
+              </a>
+              <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                <a class="dropdown-item" href="dashboard.php">Dashboard</a>
+                <a class="dropdown-item" href="logout.php">Logout</a>
+              </div>
+            </li>
+        <?php }
+      } else { ?>
               <li class="nav-item"><a class="nav-link" href="login.php"> Login</a>
               </li>
               <li class="nav-item"><a class="nav-link" href="register.php"> Register</a>
               </li>
               <li class="nav-item"><a class="nav-link" href="logout.php"> Logout</a>
               </li>
+              <?php } ?>
             </ul>
           </div>
         </nav>

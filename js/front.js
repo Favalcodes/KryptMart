@@ -80,6 +80,18 @@ $.getJSON('js/countries.json', function (data) {
 // Form select
 
 $("#role").change(function() {
+
+    // buyer
+    if ($(this).val() == "customer") {
+      $('#buyer').show();
+      $('#welcome').attr('required', '');
+      $('#welcome').attr('data-error', 'This field is required.');
+    } else {
+      $('#buyer').hide();
+      $('#welcome').removeAttr('required');
+      $('#store').removeAttr('data-error');
+    }
+
     // seller
     if ($(this).val() == "seller") {
       $('#seller').show();

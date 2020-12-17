@@ -1,4 +1,75 @@
 <?php
+// include config
+include 'config.php';
+
+// Define variables and initialize with empty values
+$category = "";
+$category_err = "";
+ 
+// Processing form data when form is submitted
+if ($_SERVER["REQUEST_METHOD"] == "POST") {
+
+  // Validate Category
+  if (empty(trim($_POST["category"]))) {
+    $category_err = "Please enter Category.";
+  } else {
+    // Prepare a select statement
+    $sql = "SELECT id FROM category WHERE category = ?";
+
+    if ($stmt = mysqli_prepare($link, $sql)) {
+      // Bind variables to the prepared statement as parameters
+      mysqli_stmt_bind_param($stmt, "s", $param_category);
+
+      // Set parameters
+      $param_category = trim($_POST["category"]);
+
+      // Attempt to execute the prepared statement
+      if (mysqli_stmt_execute($stmt)) {
+        /* store result */
+        mysqli_stmt_store_result($stmt);
+        $category = trim($_POST["category"]);
+      } else {
+        echo "Oops! Something went wrong. Please try again later.";
+      }
+
+      // Close statement
+      mysqli_stmt_close($stmt);
+    }
+  }
+
+  // Check input errors before inserting in database
+  if (empty($category_err)) {
+
+    // Prepare an insert statement
+    $sql = "INSERT INTO category (category) VALUES (?)";
+
+    if ($stmt = mysqli_prepare($link, $sql)) {
+      // Bind variables to the prepared statement as parameters
+      mysqli_stmt_bind_param($stmt, "s", $param_category);
+
+      // Set parameters
+      $param_category = $category;
+
+      // Attempt to execute the prepared statement
+      if (mysqli_stmt_execute($stmt)) {
+
+        echo "Category Successfully Added";
+      } else {
+        echo "Something went wrong. Please try again later.";
+      }
+
+      // Close statement
+      mysqli_stmt_close($stmt);
+    }
+  }
+
+
+  // Close connection
+  mysqli_close($link);
+}
+
+
+// include header
 include 'layout/header.php';
 ?>
 <div class="container">
@@ -100,12 +171,64 @@ include 'layout/header.php';
             <hr>
             <a href="#" class="btn">Add Admin</a>
             <hr>
+            <a href="#addCategory" data-toggle="modal" class="btn">Add Category</a>
+            <hr>
+            <a href="#addTag" data-toggle="modal" class="btn">Add Tags</a>
+            <hr>
             <a class="btn btn-link p-0 text-dark btn-sm" href="deliver.php">See Delivery Merchants <i class="fas fa-long-arrow-alt-right mr-2"> </i></a>
           </div>
         </div>
       </div>
     </div>
   </section>
+</div>
+
+<!--  Category Modal -->
+<div class="modal fade" id="addCategory" tabindex="-1" role="dialog" aria-hidden="true">
+  <div class="modal-dialog modal-lg modal-dialog-centered" role="document">
+    <div class="modal-content">
+      <div class="modal-body p-0">
+        <button class="close p-4" type="button" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">×</span></button>
+        <div class="row align-items-stretch px-5 py-5">
+          <form action="" method="POST">
+            <div class="row">
+              <div class="col-lg-12 form-group">
+                <label class="text-small text-uppercase" for="categoryName">Category Name</label>
+                <input class="form-control form-control-lg" id="categoryName" name="category" type="text" placeholder="Enter category">
+              </div>
+              <div class="col-lg-12 form-group">
+                  <button class="btn btn-dark" type="submit">Add Category</button>
+                </div>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!--  Tag Modal -->
+<div class="modal fade" id="addTag" tabindex="-1" role="dialog" aria-hidden="true">
+  <div class="modal-dialog modal-lg modal-dialog-centered" role="document">
+    <div class="modal-content">
+      <div class="modal-body p-0">
+        <button class="close p-4" type="button" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">×</span></button>
+        <div class="row align-items-stretch px-5 py-5">
+          <form action="#" method="POST">
+            <div class="row">
+              <div class="col-lg-12 form-group">
+                <label class="text-small text-uppercase" for="productName">Tag Name</label>
+                <input class="form-control form-control-lg" id="productName" type="text" placeholder="Enter Product name">
+              </div>
+              <div class="col-lg-12 form-group">
+                  <button class="btn btn-dark" type="submit">Add Tag</button>
+                </div>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
 </div>
 <?php
 include 'layout/footer.php'
