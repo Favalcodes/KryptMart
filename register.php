@@ -104,8 +104,8 @@ include 'layout/header.php';
             <div class="col-lg-12 form-group" id="merchant">
               <div class="row">
                 <div class="col-lg-12 <?php echo (!empty($company_err)) ? 'has-error' : ''; ?>">
-                  <label for="company">Company Name</label>
-                  <input type="text" class="form-control w-100" name="company" id="company">
+                  <label for="comp">Company Name</label>
+                  <input type="text" class="form-control w-100" name="comp" id="comp">
                   <span class="help-block"><?php echo $company_err; ?></span>
                 </div>
               </div>

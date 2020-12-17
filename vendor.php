@@ -1,4 +1,18 @@
 <?php
+
+session_start();
+
+if(!isset($_SESSION["loggedin"]) || $_SESSION["loggedin"] !== true) {
+  header("location: login.php");
+  exit;
+}
+
+// if($_SESSION['role'] !== 'seller'){
+//   echo "<script>window.alert('Not Authorised')</script>";
+//   header("location: index.php");
+// }
+
+// include header
 include 'layout/header.php';
 ?>
 <div class="container">

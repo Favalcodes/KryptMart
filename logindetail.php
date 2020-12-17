@@ -13,9 +13,10 @@ session_start();
 // Include config file
 require_once "config.php";
 
+
 // Define variables and initialize with empty values
-$email = $password = "";
-$email_err = $password_err = "";
+$email = $password = $role = "";
+$email_err = $password_err = $role_err = "";
 
 // Processing form data when form is submitted
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
@@ -34,10 +35,17 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $password = trim($_POST["password"]);
   }
 
+  // Check if role is empty
+  if (empty(trim($_POST["role"]))) {
+    $role_err = "Please enter role.";
+  } else {
+    $role = trim($_POST["role"]);
+  }
+
   // Validate credentials
-  if (empty($email_err) && empty($password_err)) {
+  if (empty($email_err) && empty($password_err) && empty($role_err)) {
     // Prepare a select statement
-    $sql = "SELECT id, email, password FROM users WHERE email = ?";
+    $sql = "SELECT id, email, password, role FROM users WHERE email = ?";
 
     if ($stmt = mysqli_prepare($link, $sql)) {
       // Bind variables to the prepared statement as parameters
@@ -45,16 +53,18 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
       // Set parameters
       $param_email = $email;
+      $param_role = $role;
+      $param_password = $password;
 
       // Attempt to execute the prepared statement
       if (mysqli_stmt_execute($stmt)) {
         // Store result
         mysqli_stmt_store_result($stmt);
 
-        // Check if username exists, if yes then verify password
+        // Check if email exists, if yes then verify password
         if (mysqli_stmt_num_rows($stmt) == 1) {
           // Bind result variables
-          mysqli_stmt_bind_result($stmt, $id, $email, $hashed_password);
+          mysqli_stmt_bind_result($stmt, $id, $email, $hashed_password, $role);
           if (mysqli_stmt_fetch($stmt)) {
             if (password_verify($password, $hashed_password)) {
 
@@ -63,16 +73,16 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
               $_SESSION["id"] = $id;
               $_SESSION["email"] = $email;
 
-                    if($_SESSION['role'] === "buyer"){
+                    if($role === "customer"){
                         // Redirect to dashboard page
                         header("location: buyer.php");
-                    }elseif($_SESSION['role'] === "seller"){
+                    }elseif($role === "seller"){
                         // Redirect to dashboard page
                         header("location: vendor.php");
-                    }elseif($_SESSION['role'] === "manufacturer"){
+                    }elseif($role === "manufacturer"){
                         // Redirect to dashboard page
                         header("location: manufacturer.php");
-                    }elseif($_SESSION['role'] === "merchant"){
+                    }elseif($role === "merchant"){
                         // Redirect to dashboard page
                         header("location: merchant.php");
                     }

@@ -109,12 +109,12 @@ $("#role").change(function() {
     // merchants
     if ($(this).val() == "merchant") {
       $('#merchant').show();
-      $('#company').attr('required', '');
-      $('#company').attr('data-error', 'This field is required.');
+      $('#comp').attr('required', '');
+      $('#comp').attr('data-error', 'This field is required.');
     } else {
       $('#merchant').hide();
-      $('#company').removeAttr('required');
-      $('#company').removeAttr('data-error');
+      $('#comp').removeAttr('required');
+      $('#comp').removeAttr('data-error');
     }
   });
   $("#role").trigger("change");

@@ -43,6 +43,17 @@ include 'layout/header.php';
                     placeholder="Enter your Password">
                     <span class="help-block"><?php echo $password_err; ?></span>
                 </div>
+                <div class="col-lg-12 form-group <?php echo (!empty($role_err)) ? 'has-error' : ''; ?>">
+              <!-- <label class="text-small text-uppercase" for="role">Role</label> -->
+              <select class="form-control" id="rol" name="role" hidden>
+                <option hidden>Select Role</option>
+                <option value="customer">Customer</option>
+                <option value="seller">Vendor/Seller</option>
+                <option value="manufacturer">Manufacturer</option>
+                <option value="merchant">Delivery Merchant</option>
+              </select>
+              <span class="help-block"><?php echo $role_err; ?></span>
+            </div>
                 <div class="col-lg-12 form-group">
                   <button class="btn btn-dark" type="submit">Login</button>
                 </div>
