@@ -22,7 +22,7 @@ contract UserRegistration {
 
     
 
-    User[] private users;
+    User[] public users;
     mapping (uint => address) profileToUser;
     mapping (address => uint) userToProfile;
     mapping (address => bool) alreadyRegistered;
