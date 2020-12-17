@@ -5,13 +5,13 @@ require_once "config.php";
 
 // Check if the user is already logged in, if yes then redirect him to home page
 if (isset($_SESSION["id"])) {
-  header("location: index.php");
+  header("location: home.php");
   exit;
 }
 
 // Define variables and initialize with empty values
-$fname = $lname = $email = $password = $confirm_password = $phone = $country = $role = $store_name = $company = $product_type = "";
-$fname_err = $lname_err = $email_err = $password_err = $confirm_password_err = $phone_err = $country_err = $role_err = $store_name_err = $company_err = $product_type_err = "";
+$fname = $lname = $email = $password = $confirm_password = $phone = $country = "";
+$fname_err = $lname_err = $email_err = $password_err = $confirm_password_err = $phone_err = $country_err = "";
 
 // Processing form data when form is submitted
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
@@ -21,7 +21,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $fname_err = "Please enter your First Name.";
   } else {
     // Prepare a select statement
-    $sql = "SELECT id FROM users WHERE fname = ?";
+    $sql = "SELECT id FROM admin WHERE fname = ?";
 
     if ($stmt = mysqli_prepare($link, $sql)) {
       // Bind variables to the prepared statement as parameters
@@ -49,7 +49,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $lname_err = "Please enter your Last Name.";
   } else {
     // Prepare a select statement
-    $sql = "SELECT id FROM users WHERE lname = ?";
+    $sql = "SELECT id FROM admin WHERE lname = ?";
 
     if ($stmt = mysqli_prepare($link, $sql)) {
       // Bind variables to the prepared statement as parameters
@@ -77,7 +77,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $email_err = "Please enter a valid email.";
   } else {
     // Prepare a select statement
-    $sql = "SELECT id FROM users WHERE email = ?";
+    $sql = "SELECT id FROM admin WHERE email = ?";
 
     if ($stmt = mysqli_prepare($link, $sql)) {
       // Bind variables to the prepared statement as parameters
@@ -129,7 +129,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $phone_err = "Please enter your Phone Number.";
   } else {
     // Prepare a select statement
-    $sql = "SELECT id FROM users WHERE phone = ?";
+    $sql = "SELECT id FROM admin WHERE phone = ?";
 
     if ($stmt = mysqli_prepare($link, $sql)) {
       // Bind variables to the prepared statement as parameters
@@ -157,7 +157,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $country_err = "Please enter your Country.";
   } else {
     // Prepare a select statement
-    $sql = "SELECT id FROM users WHERE country = ?";
+    $sql = "SELECT id FROM admin WHERE country = ?";
 
     if ($stmt = mysqli_prepare($link, $sql)) {
       // Bind variables to the prepared statement as parameters
@@ -180,127 +180,16 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     }
   }
 
-  // Validate Role
-  if (empty(trim($_POST["role"]))) {
-    $role_err = "Please enter your Role.";
-  } else {
-    // Prepare a select statement
-    $sql = "SELECT id FROM users WHERE role = ?";
-
-    if ($stmt = mysqli_prepare($link, $sql)) {
-      // Bind variables to the prepared statement as parameters
-      mysqli_stmt_bind_param($stmt, "s", $param_role);
-
-      // Set parameters
-      $param_role = trim($_POST["role"]);
-
-      // Attempt to execute the prepared statement
-      if (mysqli_stmt_execute($stmt)) {
-        /* store result */
-        mysqli_stmt_store_result($stmt);
-        $role = trim($_POST["role"]);
-      } else {
-        echo "Oops! Something went wrong. Please try again later.";
-      }
-
-      // Close statement
-      mysqli_stmt_close($stmt);
-    }
-  }
-
-  // Validate Store Name
-  if (empty(trim($_POST["store_name"]))) {
-    $store_name_err = "Please enter your Store Name.";
-  } else {
-    // Prepare a select statement
-    $sql = "SELECT id FROM users WHERE store_name = ?";
-
-    if ($stmt = mysqli_prepare($link, $sql)) {
-      // Bind variables to the prepared statement as parameters
-      mysqli_stmt_bind_param($stmt, "s", $param_store_name);
-
-      // Set parameters
-      $param_store_name = trim($_POST["store_name"]);
-
-      // Attempt to execute the prepared statement
-      if (mysqli_stmt_execute($stmt)) {
-        /* store result */
-        mysqli_stmt_store_result($stmt);
-        $store_name = trim($_POST["store_name"]);
-      } else {
-        echo "Oops! Something went wrong. Please try again later.";
-      }
-
-      // Close statement
-      mysqli_stmt_close($stmt);
-    }
-  }
-
-  // Validate Company
-  if (empty(trim($_POST["company"]))) {
-    $company_err = "Please enter your Company Name.";
-  } else {
-    // Prepare a select statement
-    $sql = "SELECT id FROM users WHERE company = ?";
-
-    if ($stmt = mysqli_prepare($link, $sql)) {
-      // Bind variables to the prepared statement as parameters
-      mysqli_stmt_bind_param($stmt, "s", $param_company);
-
-      // Set parameters
-      $param_company = trim($_POST["company"]);
-
-      // Attempt to execute the prepared statement
-      if (mysqli_stmt_execute($stmt)) {
-        /* store result */
-        mysqli_stmt_store_result($stmt);
-        $company = trim($_POST["company"]);
-      } else {
-        echo "Oops! Something went wrong. Please try again later.";
-      }
-
-      // Close statement
-      mysqli_stmt_close($stmt);
-    }
-  }
-
-  // Validate Product Type
-  if (empty(trim($_POST["product_type"]))) {
-    $product_type_err = "Please enter Product Type.";
-  } else {
-    // Prepare a select statement
-    $sql = "SELECT id FROM users WHERE product_type = ?";
-
-    if ($stmt = mysqli_prepare($link, $sql)) {
-      // Bind variables to the prepared statement as parameters
-      mysqli_stmt_bind_param($stmt, "s", $param_product_type);
-
-      // Set parameters
-      $param_product_type = trim($_POST["product_type"]);
-
-      // Attempt to execute the prepared statement
-      if (mysqli_stmt_execute($stmt)) {
-        /* store result */
-        mysqli_stmt_store_result($stmt);
-        $product_type = trim($_POST["product_type"]);
-      } else {
-        echo "Oops! Something went wrong. Please try again later.";
-      }
-
-      // Close statement
-      mysqli_stmt_close($stmt);
-    }
-  }
 
   // Check input errors before inserting in database
-  if (empty($fname_err) && empty($lname_err) && empty($email_err) && empty($password_err) && empty($confirm_password_err) && empty($phone_err) && empty($country_err) && empty($role_err)) {
+  if (empty($fname_err) && empty($lname_err) && empty($email_err) && empty($password_err) && empty($confirm_password_err) && empty($phone_err) && empty($country_err)) {
 
     // Prepare an insert statement
-    $sql = "INSERT INTO users (fname, lname, email, password, phone, country, role, store_name, company, product_type) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
+    $sql = "INSERT INTO admin (fname, lname, email, password, phone, country) VALUES (?, ?, ?, ?, ?, ?)";
 
     if ($stmt = mysqli_prepare($link, $sql)) {
       // Bind variables to the prepared statement as parameters
-      mysqli_stmt_bind_param($stmt, "ssssssssss", $param_fname, $param_lname, $param_email, $param_password, $param_phone, $param_country, $param_role, $param_store_name, $param_company, $param_product_type);
+      mysqli_stmt_bind_param($stmt, "ssssss", $param_fname, $param_lname, $param_email, $param_password, $param_phone, $param_country);
 
       // Set parameters
       $param_fname = $fname;
@@ -309,20 +198,13 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
       $param_password = password_hash($password, PASSWORD_DEFAULT); // Creates a password hash
       $param_phone = $phone;
       $param_country = $country;
-      $param_role = $role;
-      $param_store_name = $store_name;
-      $param_company = $company;
-      $param_product_type = $product_type;
 
       // Attempt to execute the prepared statement
       if (mysqli_stmt_execute($stmt)) {
 
-        session_start();
-
-        $_SESSION["role"] = $role;
 
         // Redirect to dashboard page
-        header("location: login.php");
+        header("location: index.php");
       } else {
         echo "Something went wrong. Please try again later.";
       }

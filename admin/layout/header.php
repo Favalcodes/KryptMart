@@ -44,13 +44,13 @@
           <div class="collapse navbar-collapse" id="navbarSupportedContent">
             <ul class="navbar-nav mr-auto">
               <li class="nav-item">
-                <!-- Link--><a class="nav-link" href="index.php">Home</a>
+                <!-- Link--><a class="nav-link" href="../index.php">Home</a>
               </li>
               <li class="nav-item">
-                <!-- Link--><a class="nav-link" href="shop.php">Shop</a>
+                <!-- Link--><a class="nav-link" href="../shop.php">Shop</a>
               </li>
               <li class="nav-item">
-                <!-- Link--><a class="nav-link" href="merchant.php">Deliver</a>
+                <!-- Link--><a class="nav-link" href="../deliver.php">Deliver</a>
               </li>
             </ul>
             <ul class="navbar-nav ml-auto">

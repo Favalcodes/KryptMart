@@ -1,4 +1,9 @@
 <?php
+
+// include login php
+include 'logindetail.php';
+
+// include header
 include 'layout/header.php'
 ?>
     <div class="container">

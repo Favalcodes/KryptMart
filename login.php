@@ -54,7 +54,7 @@ include 'layout/header.php';
             <div class="card border-0 rounded-0 p-lg-4 bg-light">
               <div class="card-body">
                 <p>Don't have an account?</p>
-                <a class="btn btn-dark" href="register.php">Login</a>
+                <a class="btn btn-dark" href="register.php">Register</a>
               </div>
             </div>
           </div>

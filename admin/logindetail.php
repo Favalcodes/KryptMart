@@ -5,10 +5,10 @@ session_start();
 
 
 // Check if the user is already logged in, if yes then redirect him to welcome page
-// if (isset($_SESSION["loggedin"]) && $_SESSION["loggedin"] === true) {
-//   header("location: dashboard.php");
-//   exit;
-// }
+if (isset($_SESSION["loggedin"]) && $_SESSION["loggedin"] === true) {
+  header("location: home.php");
+  exit;
+}
 
 // Include config file
 require_once "config.php";
@@ -37,7 +37,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
   // Validate credentials
   if (empty($email_err) && empty($password_err)) {
     // Prepare a select statement
-    $sql = "SELECT id, email, password FROM users WHERE email = ?";
+    $sql = "SELECT id, email, password FROM admin WHERE email = ?";
 
     if ($stmt = mysqli_prepare($link, $sql)) {
       // Bind variables to the prepared statement as parameters
@@ -63,19 +63,8 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
               $_SESSION["id"] = $id;
               $_SESSION["email"] = $email;
 
-                    if($_SESSION['role'] === "buyer"){
                         // Redirect to dashboard page
-                        header("location: buyer.php");
-                    }elseif($_SESSION['role'] === "seller"){
-                        // Redirect to dashboard page
-                        header("location: vendor.php");
-                    }elseif($_SESSION['role'] === "manufacturer"){
-                        // Redirect to dashboard page
-                        header("location: manufacturer.php");
-                    }elseif($_SESSION['role'] === "merchant"){
-                        // Redirect to dashboard page
-                        header("location: merchant.php");
-                    }
+                        header("location: home.php");
             } else {
               // Display an error message if password is not valid
               $password_err = "The password you entered was not valid.";

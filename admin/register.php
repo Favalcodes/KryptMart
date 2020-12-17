@@ -1,4 +1,9 @@
 <?php
+
+// include registration php
+include 'regdetail.php';
+
+// include header
 include 'layout/header.php'
 ?>
     <div class="container">
