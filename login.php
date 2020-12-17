@@ -1,5 +1,10 @@
 <?php
-include 'layout/header.php'
+
+// include login php
+include 'logindetail.php';
+
+// include header
+include 'layout/header.php';
 ?>
     <div class="container">
       <!-- HERO SECTION-->
@@ -24,17 +29,19 @@ include 'layout/header.php'
         <!-- Details-->
         <div class="row">
           <div class="col-lg-8">
-            <form action="#">
+            <form action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]); ?>" method="POST">
               <div class="row">
-                <div class="col-lg-6 form-group">
+                <div class="col-lg-6 form-group <?php echo (!empty($email_err)) ? 'has-error' : ''; ?>">
                   <label class="text-small text-uppercase" for="email">Email</label>
                   <input class="form-control form-control-lg" name="email" id="email" type="text"
-                    placeholder="Enter your Email">
+                  value="<?php echo $email; ?>">
+                  <span class="help-block"><?php echo $email_err; ?></span>
                 </div>
-                <div class="col-lg-6 form-group">
+                <div class="col-lg-6 form-group <?php echo (!empty($password_err)) ? 'has-error' : ''; ?>">
                   <label class="text-small text-uppercase" for="password">Password</label>
                   <input class="form-control form-control-lg" name="password" id="password" type="password"
                     placeholder="Enter your Password">
+                    <span class="help-block"><?php echo $password_err; ?></span>
                 </div>
                 <div class="col-lg-12 form-group">
                   <button class="btn btn-dark" type="submit">Login</button>
