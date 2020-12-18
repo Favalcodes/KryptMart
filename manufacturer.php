@@ -150,15 +150,6 @@ include 'layout/header.php';
       <div class="modal-body p-0">
         <button class="close p-4" type="button" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">×</span></button>
         <div class="row align-items-stretch px-5 py-5">
-        <div class="messages">
-                <!-- <?php
-                // if (isset($errors)) {
-                //     echo implode('<br/>', $errors);
-                // } elseif ($productSaved) {
-                //     echo 'The product details were successfully saved.';
-                // }
-                ?> -->
-            </div>
           <form action="manufacturer.php" method="POST" enctype="multipart/form-data">
             <div class="row">
               <div class="col-lg-6 form-group">
