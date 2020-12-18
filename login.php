@@ -4,7 +4,7 @@
 include 'logindetail.php';
 
 // include header
-include 'layout/header.php';
+include 'layout/head.php';
 ?>
     <div class="container">
       <!-- HERO SECTION-->

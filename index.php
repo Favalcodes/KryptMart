@@ -1,4 +1,15 @@
 <?php
+
+session_start();
+
+// include config file
+include 'config.php';
+
+// SQL query to select data from database 
+$sql = "SELECT * FROM users where id = $_SESSION[id]";
+$result = $link->query($sql) or die("Error: " . mysqli_error($link));
+
+// include header
 include 'layout/header.php'
 ?>
 <!--  Modal -->

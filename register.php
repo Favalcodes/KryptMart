@@ -6,7 +6,7 @@ include 'regdetails.php';
 print_r($role);
 
 // include header
-include 'layout/header.php';
+include 'layout/head.php';
 ?>
 <div class="container">
   <!-- HERO SECTION-->

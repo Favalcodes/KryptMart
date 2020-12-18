@@ -72,6 +72,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
               $_SESSION["loggedin"] = true;
               $_SESSION["id"] = $id;
               $_SESSION["email"] = $email;
+              $_SESSION["role"] = $role;
 
                     if($role === "customer"){
                         // Redirect to dashboard page
