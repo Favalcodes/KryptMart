@@ -2,7 +2,7 @@
 pragma solidity ^0.6.0;
 
 import './userRegistration.sol';
-import 'github.com/OpenZeppelin/zeppelin-solidity/contracts/math/SafeMath.sol';
+import "./SafeMath.sol";
 
 contract ProductCreation is UserRegistration  {    
    
