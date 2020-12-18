@@ -226,7 +226,7 @@ include 'layout/header.php';
               </div>
               <div class="col-lg-12 form-group">
               <span class="text-danger">*</span><label>fields are required</label><br>
-                  <button class="btn btn-dark" type="submit">Add Product</button>
+                  <button class="btn btn-dark" type="submit" name="submit">Add Product</button>
                 </div>
             </div>
           </form>
