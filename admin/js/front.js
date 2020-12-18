@@ -80,18 +80,6 @@ $.getJSON('js/countries.json', function (data) {
 // Form select
 
 $("#role").change(function() {
-
-    // buyer
-    if ($(this).val() == "customer") {
-      $('#buyer').show();
-      $('#welcome').attr('required', '');
-      $('#welcome').attr('data-error', 'This field is required.');
-    } else {
-      $('#buyer').hide();
-      $('#welcome').removeAttr('required');
-      $('#store').removeAttr('data-error');
-    }
-
     // seller
     if ($(this).val() == "seller") {
       $('#seller').show();
@@ -121,12 +109,12 @@ $("#role").change(function() {
     // merchants
     if ($(this).val() == "merchant") {
       $('#merchant').show();
-      $('#comp').attr('required', '');
-      $('#comp').attr('data-error', 'This field is required.');
+      $('#company').attr('required', '');
+      $('#company').attr('data-error', 'This field is required.');
     } else {
       $('#merchant').hide();
-      $('#comp').removeAttr('required');
-      $('#comp').removeAttr('data-error');
+      $('#company').removeAttr('required');
+      $('#company').removeAttr('data-error');
     }
   });
   $("#role").trigger("change");
