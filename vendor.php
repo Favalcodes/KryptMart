@@ -10,6 +10,36 @@ if(!isset($_SESSION["loggedin"]) || $_SESSION["loggedin"] !== true) {
 // include config file
 include 'config.php';
 
+if(isset($_POST['submit']))
+{
+	$category=$_POST['category'];
+	$productname=$_POST['p_name'];
+	$productamount=$_POST['amount'];
+	$discount=$_POST['discount'];
+	$download=$_POST['download'];
+	$productdescription=$_POST['description'];
+	$tags=$_POST['tags'];
+	$prod=$_POST['product'];
+	// $product=$_POST['product'];
+	$productimage1=$_FILES["image_1"]["name"];
+	$productimage2=$_FILES["image_2"]["name"];
+	$productimage3=$_FILES["image_3"]["name"];
+	$productimage4=$_FILES["image_4"]["name"];
+//for getting product id
+$query=mysqli_query($link,"select max(id) as pid from vendor");
+	$result=mysqli_fetch_array($query);
+	 $productid=$result['pid']+1;
+	$dir="sellerimages/$productid";
+	mkdir($dir);// directory creation for product images
+	move_uploaded_file($_FILES["image_1"]["tmp_name"],"sellerimages/$productid/".$_FILES["image_1"]["name"]);
+	move_uploaded_file($_FILES["image_2"]["tmp_name"],"sellerimages/$productid/".$_FILES["image_2"]["name"]);
+	move_uploaded_file($_FILES["image_3"]["tmp_name"],"sellerimages/$productid/".$_FILES["image_3"]["name"]);
+	move_uploaded_file($_FILES["image_4"]["tmp_name"],"sellerimages/$productid/".$_FILES["image_4"]["name"]);
+$sql=mysqli_query($link,"insert into vendor(user_id,category,amount,discount,description,tags,p_name,image_1,image_2,image_3,image_4,download, product) values('$_SESSION[id]','$category','$productamount','$discount','$productdescription','$tags','$productname','$productimage1','$productimage2','$productimage3', '$productimage4', '$download', '$prod')");
+echo "<script>alert('Product Inserted Successfully!')</script>";
+
+}
+
 // SQL query to select data from database 
 $sql = "SELECT * FROM users where id = $_SESSION[id]";
 $result = $link->query($sql) or die("Error: " . mysqli_error($link));
@@ -107,6 +137,7 @@ include 'layout/header.php';
   </section>
 </div>
 
+
 <!-- Modals -->
 <!--  Product Modal -->
 <div class="modal fade" id="addProduct" tabindex="-1" role="dialog" aria-hidden="true">
@@ -115,47 +146,56 @@ include 'layout/header.php';
       <div class="modal-body p-0">
         <button class="close p-4" type="button" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">×</span></button>
         <div class="row align-items-stretch px-5 py-5">
-          <form action="">
+          <form action="vendor.php" method="POST" enctype="multipart/form-data">
             <div class="row">
               <div class="col-lg-6 form-group">
-                <label class="text-small text-uppercase" for="productName">Product Name</label>
-                <input class="form-control form-control-lg" id="productName" type="text" placeholder="Enter Product name">
+                <label class="text-small text-uppercase" for="productName">Product Name<span class="text-danger">*</span></label>
+                <input class="form-control form-control-lg" id="productName" name="p_name" type="text" placeholder="Enter Product name">
               </div>
               <div class="col-lg-6 form-group">
-                <label class="text-small text-uppercase" for="category">Category</label>
-                <select class="selectpicker category form-control" id="category"></select>
+                <label class="text-small text-uppercase" for="category">Category<span class="text-danger">*</span></label>
+                <select class="category form-control" name="category" id="category">
+                  <option hidden>Select Category</option>
+                  <option value="bag">Bag</option>
+                  <option value="shoe">Shoe</option>
+                  <option value="hair">Hair</option>
+                  <option value="makeup">Makeup</option>
+                  <option value="cloth">Cloth</option>
+                </select>
               </div>
               <div class="col-lg-6 form-group">
-                <label class="text-small text-uppercase" for="amount">Amount</label>
-                <input class="form-control form-control-lg" id="amount" type="text" value="$">
+                <label class="text-small text-uppercase" for="amount">Amount<span class="text-danger">*</span></label>
+                <span class="input-group-text bg-primary" id="basic-addon1">Eth</span>
+                <input class="form-control form-control-lg" id="amount" name="amount" type="number" placeholder="0.00" aria-describedby="basic-addon1">
               </div>
               <div class="col-lg-6 form-group">
                 <label class="text-small text-uppercase" for="discount">Discount</label>
-                <input class="form-control form-control-lg" id="discount" type="text" placeholder="%">
+                <span class="input-group-text bg-primary" id="basic-addon1">Eth</span>
+                <input class="form-control form-control-lg" id="discount" name="discount" type="number" placeholder="%" aria-describedby="basic-addon1">
               </div>
               <div class="col-lg-12 form-group">
-                <label class="text-small text-uppercase" for="tag">Tags</label>
-                <input class="form-control form-control-lg" id="tag" type="text" placeholder="e.g book, bag,laptop">
+                <label class="text-small text-uppercase" for="tag">Tags<span class="text-danger">*</span></label>
+                <input class="form-control form-control-lg" id="tag" name="tags" type="text" placeholder="e.g book, bag,laptop">
               </div>
               <div class="col-lg-12 form-group">
-                <label class="text-small text-uppercase" for="description">Description</label>
-                <textarea name="desc" id="desc" cols="30" class="form-control" rows="10" placeholder="More info on Product"></textarea>
+                <label class="text-small text-uppercase" for="description">Description<span class="text-danger">*</span></label>
+                <textarea name="description" id="desc" cols="30" class="form-control" rows="10" placeholder="More info on Product"></textarea>
               </div>
               <div class="col-lg-6 form-group">
-                <label class="text-small text-uppercase" for="image1">Image</label>
-                <input class="form-control form-control-lg" id="image1" type="file">
+                <label class="text-small text-uppercase" for="image1">Image<span class="text-danger">*</span></label>
+                <input class="form-control form-control-lg" type="file" id="image1" name="image_1">
               </div>
               <div class="reveal col-lg-6 form-group">
                 <label class="text-small text-uppercase" for="image2">Image 2</label>
-                <input class="form-control form-control-lg" id="image2" type="file">
+                <input class="form-control form-control-lg" name="image_2" id="image2" type="file">
               </div>
               <div class="reveal col-lg-6 form-group">
                 <label class="text-small text-uppercase" for="image3">Image 3</label>
-                <input class="form-control form-control-lg" id="image3" type="file">
+                <input class="form-control form-control-lg" name="image_3" id="image3" type="file">
               </div>
               <div class="reveal col-lg-6 form-group">
                 <label class="text-small text-uppercase" for="image4">Image 4</label>
-                <input class="form-control form-control-lg" id="image4" type="file">
+                <input class="form-control form-control-lg" name="image_4" id="image4" type="file">
               </div>
               <div class="col-lg-6 form-group">
                 <div class="custom-control custom-checkbox">
@@ -169,17 +209,18 @@ include 'layout/header.php';
                     <h2 class="h4 text-uppercase mb-4">Digital Product</h2>
                   </div>
                   <div class="col-lg-6 form-group">
-                    <label class="text-small text-uppercase" for="uploadProduct">Upload Product</label>
-                    <input class="form-control form-control-lg" id="uploadProduct" type="file">
+                    <label class="text-small text-uppercase" for="uploadProduct">Upload Product<span class="text-danger">*</span></label>
+                    <input class="form-control form-control-lg" name="product" id="uploadProduct" type="file">
                   </div>
                   <div class="col-lg-6 form-group">
-                    <label class="text-small text-uppercase" for="download">Number of Downloads After Purchase</label>
-                    <input class="form-control form-control-lg" id="download" type="number" placeholder="Number of Downloads">
+                    <label class="text-small text-uppercase" for="download">Number of Downloads After Purchase<span class="text-danger">*</span></label>
+                    <input class="form-control form-control-lg" name="download" id="download" type="number" placeholder="Number of Downloads">
                   </div>
                 </div>
               </div>
               <div class="col-lg-12 form-group">
-                  <button class="btn btn-dark" type="submit">Add Product</button>
+              <span class="text-danger">*</span><label>fields are required</label><br>
+                  <button class="btn btn-dark" type="submit" name="submit">Add Product</button>
                 </div>
             </div>
           </form>

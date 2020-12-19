@@ -21,13 +21,14 @@ if(isset($_POST['submit']))
 	$download=$_POST['download'];
 	$productdescription=$_POST['description'];
 	$tags=$_POST['tags'];
-	$product=$_POST['product'];
+	$prod=$_POST['product'];
+	// $product=$_POST['product'];
 	$productimage1=$_FILES["image_1"]["name"];
 	$productimage2=$_FILES["image_2"]["name"];
 	$productimage3=$_FILES["image_3"]["name"];
 	$productimage4=$_FILES["image_4"]["name"];
 //for getting product id
-$query=mysqli_query($link,"select max(id) as pid from products");
+$query=mysqli_query($link,"select max(id) as pid from manufacture");
 	$result=mysqli_fetch_array($query);
 	 $productid=$result['pid']+1;
 	$dir="productimages/$productid";
@@ -36,8 +37,8 @@ $query=mysqli_query($link,"select max(id) as pid from products");
 	move_uploaded_file($_FILES["image_2"]["tmp_name"],"productimages/$productid/".$_FILES["image_2"]["name"]);
 	move_uploaded_file($_FILES["image_3"]["tmp_name"],"productimages/$productid/".$_FILES["image_3"]["name"]);
 	move_uploaded_file($_FILES["image_4"]["tmp_name"],"productimages/$productid/".$_FILES["image_4"]["name"]);
-$sql=mysqli_query($link,"insert into products(category,p_name,amount,discount,moq,description,tags,product,image_1,image_2,image_3,image_4,download) values('$category','$productname','$productamount','$discount','$moq','$productdescription','$tags','$product','$productimage1','$productimage2','$productimage3', '$productimage4', '$download')");
-$_SESSION['msg']="Product Inserted Successfully !!";
+$sql=mysqli_query($link,"insert into manufacture (user_id,category,amount,discount,moq,description,tags,p_name,image_1,image_2,image_3,image_4,download, product) values('$_SESSION[id]','$category','$productamount','$discount','$moq','$productdescription','$tags','$productname','$productimage1','$productimage2','$productimage3', '$productimage4', '$download', '$prod')");
+echo "<script>alert('Product Inserted Successfully!')</script>";
 
 }
 
@@ -169,11 +170,13 @@ include 'layout/header.php';
               </div>
               <div class="col-lg-6 form-group">
                 <label class="text-small text-uppercase" for="amount">Amount<span class="text-danger">*</span></label>
-                <input class="form-control form-control-lg" id="amount" name="amount" type="text" value="Eth">
+                <span class="input-group-text bg-primary" id="basic-addon1">Eth</span>
+                <input class="form-control form-control-lg" id="amount" name="amount" type="text" placeholder="0.00" aria-describedby="basic-addon1">
               </div>
               <div class="col-lg-6 form-group">
                 <label class="text-small text-uppercase" for="discount">Discount</label>
-                <input class="form-control form-control-lg" id="discount" name="discount" type="text" placeholder="%">
+                <span class="input-group-text bg-primary" id="basic-addon1">Eth</span>
+                <input class="form-control form-control-lg" id="discount" name="discount" type="text" placeholder="%" aria-describedby="basic-addon1">
               </div>
               <div class="col-lg-6 form-group">
                 <label class="text-small text-uppercase" for="tag">Tags<span class="text-danger">*</span></label>

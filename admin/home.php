@@ -7,7 +7,7 @@ $category = "";
 $category_err = "";
  
 // Processing form data when form is submitted
-if ($_SERVER["REQUEST_METHOD"] == "POST") {
+if (isset($_POST['proceed'])) {
 
   // Validate Category
   if (empty(trim($_POST["category"]))) {
@@ -53,7 +53,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
       // Attempt to execute the prepared statement
       if (mysqli_stmt_execute($stmt)) {
 
-        echo "Category Successfully Added";
+        echo "<script>alert('Category Successfully Added')</script>";
       } else {
         echo "Something went wrong. Please try again later.";
       }
@@ -63,7 +63,14 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     }
   }
 
+}
 
+if(isset($_POST['submit']))
+{
+  $tag=$_POST['tag'];
+  $sql=mysqli_query($link,"insert into tag(tag) values('$tag')");
+  echo "<script>alert('Tag Inserted Successfully')</script>";
+  
   // Close connection
   mysqli_close($link);
 }
@@ -197,7 +204,7 @@ include 'layout/header.php';
                 <input class="form-control form-control-lg" id="categoryName" name="category" type="text" placeholder="Enter category">
               </div>
               <div class="col-lg-12 form-group">
-                  <button class="btn btn-dark" type="submit">Add Category</button>
+                  <button class="btn btn-dark" name="proceed" type="submit">Add Category</button>
                 </div>
             </div>
           </form>
@@ -214,14 +221,14 @@ include 'layout/header.php';
       <div class="modal-body p-0">
         <button class="close p-4" type="button" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">×</span></button>
         <div class="row align-items-stretch px-5 py-5">
-          <form action="#" method="POST">
+          <form action="" method="POST">
             <div class="row">
               <div class="col-lg-12 form-group">
                 <label class="text-small text-uppercase" for="productName">Tag Name</label>
-                <input class="form-control form-control-lg" id="productName" type="text" placeholder="Enter Product name">
+                <input class="form-control form-control-lg" id="productName" name="tag" type="text" placeholder="Enter Product name">
               </div>
               <div class="col-lg-12 form-group">
-                  <button class="btn btn-dark" type="submit">Add Tag</button>
+                  <button class="btn btn-dark" name="submit" type="submit">Add Tag</button>
                 </div>
             </div>
           </form>
