@@ -33,7 +33,7 @@ include 'layout/head.php';
               <div class="row">
                 <div class="col-lg-6 form-group <?php echo (!empty($email_err)) ? 'has-error' : ''; ?>">
                   <label class="text-small text-uppercase" for="email">Email</label>
-                  <input class="form-control form-control-lg" name="email" id="email" type="text"
+                  <input class="form-control form-control-lg" name="email" id="email" type="email"
                   value="<?php echo $email; ?>">
                   <span class="help-block"><?php echo $email_err; ?></span>
                 </div>

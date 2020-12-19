@@ -24,6 +24,10 @@ include 'mdetails.php';
 $sql = "SELECT * FROM users where id = $_SESSION[id]";
 $result = $link->query($sql) or die("Error: " . mysqli_error($link));
 
+// product table
+$sq = "SELECT * FROM manufacture where user_id = $_SESSION[id]";
+$productresult = $link->query($sq) or die("Error: " . mysqli_error($link));
+
 // include header
 include 'layout/header.php';
 ?>
@@ -92,8 +96,51 @@ include 'layout/header.php';
           <div class="tab-pane fade" id="product" role="tabpanel" aria-labelledby="product-tab">
             <div class="p-4 p-lg-5 bg-white">
               <a class="btn btn-primary" href="#addProduct" data-toggle="modal">Add Product</a>
+              <?php
+                if(mysqli_num_rows($productresult)===0){ ?>
               <img src="img/nothing.svg" alt="No Order">
               <h3>No Product Yet, Start Selling</h3>
+              <?php } ?>
+              <div class="card mt-4">
+                <div class="card-body">
+                  <div class="row">
+                    <div class="col-lg-3">
+                      <h6>Product Images</h6>
+                    </div>
+                    <div class="col-lg-3">
+                      <h6>Name</h6>
+                    </div>
+                    <div class="col-lg-3">
+                      <h6>Price</h6>
+                    </div>
+                    <div class="col-lg-3">
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="card">
+                <div class="card-body">
+              <?php
+                        while ($row = mysqli_fetch_array($productresult)) {
+                          ?>
+                  <div class="row">
+                    <div class="col-lg-3">
+                   <img src="productimages/<?php echo $row["id"]; ?>/<?php echo $row["image_1"]; ?>" alt="" style="height: 100px; width: 100px"> 
+                    </div>
+                    <div class="col-lg-3">
+                    <?php echo $row["p_name"]; ?>
+                    </div>
+                    <div class="col-lg-3">
+                    Eth <?php echo $row["amount"]; ?>
+                    </div>
+                    <div class="col-lg-3">
+                      <div class="btn">Edit</div>
+                    </div>
+                    <?php
+                        } ?>
+                  </div>
+                </div>
+              </div>
             </div>
           </div>
         </div>
