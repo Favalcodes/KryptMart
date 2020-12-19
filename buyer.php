@@ -1,4 +1,23 @@
 <?php
+
+session_start();
+
+// include config file
+include 'config.php';
+
+// check if user is logged in
+if(!isset($_SESSION["loggedin"]) || $_SESSION["loggedin"] !== true) {
+  header("location: login.php");
+  exit;
+}
+
+// Check role of user to restrict page visit
+if(!isset($_SESSION["role"]) || $_SESSION["role"] !== "seller") {
+  header("location: index.php");
+  exit;
+}
+
+// include header
 include 'layout/header.php';
 ?>
 <div class="container">
