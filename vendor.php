@@ -19,7 +19,7 @@ if(isset($_POST['submit']))
 	$download=$_POST['download'];
 	$productdescription=$_POST['description'];
 	$tags=$_POST['tags'];
-	$prod=$_POST['product'];
+	$prod=$_FILES["product"]["name"];
 	// $product=$_POST['product'];
 	$productimage1=$_FILES["image_1"]["name"];
 	$productimage2=$_FILES["image_2"]["name"];
@@ -30,11 +30,14 @@ $query=mysqli_query($link,"select max(id) as pid from vendor");
 	$result=mysqli_fetch_array($query);
 	 $productid=$result['pid']+1;
 	$dir="sellerimages/$productid";
+	$path="vendorproduct/$productid";
 	mkdir($dir);// directory creation for product images
+	mkdir($path);// directory creation for product
 	move_uploaded_file($_FILES["image_1"]["tmp_name"],"sellerimages/$productid/".$_FILES["image_1"]["name"]);
 	move_uploaded_file($_FILES["image_2"]["tmp_name"],"sellerimages/$productid/".$_FILES["image_2"]["name"]);
 	move_uploaded_file($_FILES["image_3"]["tmp_name"],"sellerimages/$productid/".$_FILES["image_3"]["name"]);
 	move_uploaded_file($_FILES["image_4"]["tmp_name"],"sellerimages/$productid/".$_FILES["image_4"]["name"]);
+	move_uploaded_file($_FILES["product"]["tmp_name"],"vendorproduct/$productid/".$_FILES["product"]["name"]);
 $sql=mysqli_query($link,"insert into vendor(user_id,category,amount,discount,description,tags,p_name,image_1,image_2,image_3,image_4,download, product) values('$_SESSION[id]','$category','$productamount','$discount','$productdescription','$tags','$productname','$productimage1','$productimage2','$productimage3', '$productimage4', '$download', '$prod')");
 echo "<script>alert('Product Inserted Successfully!')</script>";
 
@@ -166,7 +169,7 @@ include 'layout/header.php';
               <div class="col-lg-6 form-group">
                 <label class="text-small text-uppercase" for="amount">Amount<span class="text-danger">*</span></label>
                 <span class="input-group-text bg-primary" id="basic-addon1">Eth</span>
-                <input class="form-control form-control-lg" id="amount" name="amount" type="number" placeholder="0.00" aria-describedby="basic-addon1">
+                <input class="form-control form-control-lg" id="amount" name="amount" type="text" placeholder="0.00" aria-describedby="basic-addon1">
               </div>
               <div class="col-lg-6 form-group">
                 <label class="text-small text-uppercase" for="discount">Discount</label>
