@@ -75,3 +75,58 @@ $.getJSON('js/countries.json', function (data) {
         $("select.country").append(selectOption);
     });
 })
+
+
+// Form select
+
+$("#role").change(function() {
+
+    // buyer
+    if ($(this).val() == "customer") {
+      $('#buyer').show();
+      $('#welcome').attr('required', '');
+      $('#welcome').attr('data-error', 'This field is required.');
+    } else {
+      $('#buyer').hide();
+      $('#welcome').removeAttr('required');
+      $('#store').removeAttr('data-error');
+    }
+
+    // seller
+    if ($(this).val() == "seller") {
+      $('#seller').show();
+      $('#store').attr('required', '');
+      $('#store').attr('data-error', 'This field is required.');
+    } else {
+      $('#seller').hide();
+      $('#store').removeAttr('required');
+      $('#store').removeAttr('data-error');
+    }
+
+    // manufacturer
+    if ($(this).val() == "manufacturer") {
+      $('#manufacturer').show();
+      $('#company').attr('required', '');
+      $('#company').attr('data-error', 'This field is required.');
+      $('#product').attr('required', '');
+      $('#product').attr('data-error', 'This field is required.');
+    } else {
+      $('#manufacturer').hide();
+      $('#company').removeAttr('required');
+      $('#company').removeAttr('data-error');
+      $('#product').removeAttr('required');
+      $('#product').removeAttr('data-error');
+    }
+
+    // merchants
+    if ($(this).val() == "merchant") {
+      $('#merchant').show();
+      $('#comp').attr('required', '');
+      $('#comp').attr('data-error', 'This field is required.');
+    } else {
+      $('#merchant').hide();
+      $('#comp').removeAttr('required');
+      $('#comp').removeAttr('data-error');
+    }
+  });
+  $("#role").trigger("change");
