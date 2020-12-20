@@ -142,7 +142,7 @@ c. PHP 7 and above installed
 # Process
 1. Download or Clone the project folder
 2. Save the folder in htdocs folder found in the Xampp folder if you are using xampp but if you are using Wamp, save it in www folder found in the wamp folder.
-3. Open your local server panel and make sure Apache and mysql is running/
+3. Open your local server panel and make sure Apache and mysql is running
 4. Open localhost/phpmyadmin in your browser.
 5. Click on New at the sidebar to add a new database and name it Kryptmart_db.
 6. After creating the database, at the right side panel, click on import found on the navbar and select kryptmart_db.sql found in the db folder inside the project folder.
