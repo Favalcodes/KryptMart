@@ -20,8 +20,8 @@ $query=mysqli_query($link,"select max(id) as pid from vendor");
 	 $productid=$result['pid']+1;
 	$dir="sellerimages/$productid";
 	$path="vendorproduct/$productid";
-	mkdir($dir);// directory creation for product images
-	mkdir($path);// directory creation for product
+	mkdir($dir); // directory creation for product images
+	mkdir($path); // directory creation for product
 	move_uploaded_file($_FILES["image_1"]["tmp_name"],"sellerimages/$productid/".$_FILES["image_1"]["name"]);
 	move_uploaded_file($_FILES["image_2"]["tmp_name"],"sellerimages/$productid/".$_FILES["image_2"]["name"]);
 	move_uploaded_file($_FILES["image_3"]["tmp_name"],"sellerimages/$productid/".$_FILES["image_3"]["name"]);

@@ -22,7 +22,7 @@ $sql = "SELECT * FROM users where id = $_SESSION[id]";
 $result = $link->query($sql) or die("Error: " . mysqli_error($link));
 
 // SQL query for the logo
-$sq = "SELECT * FROM logo where user_id = $_SESSION[id]";
+$sq = "SELECT * FROM logo";
 $output = $link->query($sq) or die("Error: " . mysqli_error($link));
 
 // include header
@@ -66,11 +66,14 @@ include 'layout/header.php';
               <h6 class="text-uppercase">Account Details </h6>
               <label class="text-small text-uppercase" for="logo">Logo</label>
               <?php
-                if(mysqli_num_rows($productresult)===0){ ?>
+                if(mysqli_num_rows($output)===0){ ?>
               <img src="img/nothing.svg" height="100px" width="100px" alt="No Order">
-              <h3>No Logo</h3>
+              <h3>No Logo</h3><br>
+              <input type="file" name="image" id="image" class="form-control">
+              <a class="btn btn-dark">
+                Add Logo
+              </a>
               <?php } ?>
-              <p><?php echo $tablerows["image"]; ?></p>
               <label class="text-small text-uppercase" for="firstName">First name:</label>
               <p><?php echo $rows["fname"]; ?></p>
               <label class="text-small text-uppercase" for="lastName">Last name:</label>
