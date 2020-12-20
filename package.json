@@ -1,0 +1,26 @@
+{
+  "name": "KryptMart",
+  "version": "1.0.0",
+  "description": "KrptMart is a multi vendor ecommerce website with supply chain management that is built on smart contracts. It accepts all kinds of products for sales, the kind of products being sold actually depends on the seller or manufacturer that is registered on the platform, its major currency is Ethereum but also accepts ERC-20 tokens like DAI.",
+  "main": "truffle-config.js",
+  "directories": {
+    "test": "test"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Favalcodes/KryptMart.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Favalcodes/KryptMart/issues"
+  },
+  "homepage": "https://github.com/Favalcodes/KryptMart#readme",
+  "dependencies": {
+    "@openzeppelin/contracts": "^3.3.0"
+  }
+}
