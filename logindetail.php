@@ -86,6 +86,8 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                     }elseif($role === "merchant"){
                         // Redirect to dashboard page
                         header("location: merchant.php");
+                    }else{
+                      header("location: index.php");
                     }
             } else {
               // Display an error message if password is not valid

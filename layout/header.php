@@ -69,7 +69,7 @@ $output = $link->query($sql) or die("Error: " . mysqli_error($link));
                 <?php echo $tablerows['fname'] ?>
               </a>
               <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                <a class="dropdown-item" href="dashboard.php">Dashboard</a>
+                <a class="dropdown-item" href="">Dashboard</a>
                 <a class="dropdown-item" href="logout.php">Logout</a>
               </div>
             </li>

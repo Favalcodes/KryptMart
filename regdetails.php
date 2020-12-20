@@ -14,7 +14,7 @@ $fname = $lname = $email = $password = $confirm_password = $phone = $country = $
 $fname_err = $lname_err = $email_err = $password_err = $confirm_password_err = $phone_err = $country_err = $role_err = $username_err = $store_name_err = $company_err = $product_type_err = $comp_err = "";
 
 // Processing form data when form is submitted
-if ($_SERVER["REQUEST_METHOD"] == "POST") {
+if (isset($_POST['submit'])) {
 
   // Validate First Name
   if (empty(trim($_POST["fname"]))) {
@@ -349,7 +349,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
   }
 
   // Check input errors before inserting in database
-  if (empty($fname_err) && empty($lname_err) && empty($email_err) && empty($password_err) && empty($confirm_password_err) && empty($phone_err) && empty($country_err) && empty($role_err) && empty($comp_err)) {
+  if (empty($fname_err) && empty($lname_err) && empty($email_err) && empty($password_err) && empty($confirm_password_err) && empty($phone_err) && empty($country_err) && empty($role_err)) {
 
     // Prepare an insert statement
     $sql = "INSERT INTO users (fname, lname, email, password, phone, country, role, username, store_name, company, product_type, comp) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";

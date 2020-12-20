@@ -5,6 +5,7 @@ if(!isset($_SESSION["loggedin"]) || $_SESSION["loggedin"] !== true) {
   exit;
 }
 
+
 // include header
 include 'layout/header.php';
 ?>

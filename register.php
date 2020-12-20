@@ -3,8 +3,6 @@
 // include php for registration
 include 'regdetails.php';
 
-print_r($role);
-
 // include header
 include 'layout/head.php';
 ?>
@@ -84,6 +82,7 @@ include 'layout/head.php';
               <label class="text-small text-uppercase" for="role">Role</label>
               <select class="form-control" id="role" name="role">
                 <option hidden>Select Role</option>
+                <option value="test">Test</option>
                 <option value="customer">Customer</option>
                 <option value="seller">Vendor/Seller</option>
                 <option value="manufacturer">Manufacturer</option>
