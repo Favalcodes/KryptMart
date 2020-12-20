@@ -132,3 +132,19 @@ n.      Admin dashboard
 o.      Admin login and registration page
 
 
+# How To Install the app
+
+# Requirements
+a. Local server (e.g Xampp, Wamp e.t.c)
+b. Browser (e.g Google Chrome)
+c. PHP 7 and above installed
+
+# Process
+1. Download or Clone the project folder
+2. Save the folder in htdocs folder found in the Xampp folder if you are using xampp but if you are using Wamp, save it in www folder found in the wamp folder.
+3. Open your local server panel and make sure Apache and mysql is running
+4. Open localhost/phpmyadmin in your browser.
+5. Click on New at the sidebar to add a new database and name it Kryptmart_db.
+6. After creating the database, at the right side panel, click on import found on the navbar and select kryptmart_db.sql found in the db folder inside the project folder.
+7. After Importing, your database should be up and running, if your database has a username and password, go over to config file found in the project file and edit the db_username and db_password area to meet yours.
+8. Open a new tab on your browser and type in localhost/project_folder_name and the website should be up and running.

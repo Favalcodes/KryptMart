@@ -5,14 +5,25 @@ session_start();
 // include config file
 include 'config.php';
 
+// check if user is logged in
 if(!isset($_SESSION["loggedin"]) || $_SESSION["loggedin"] !== true) {
   header("location: login.php");
+  exit;
+}
+
+// Check role of user to restrict page visit
+if(!isset($_SESSION["role"]) || $_SESSION["role"] !== "merchant") {
+  header("location: index.php");
   exit;
 }
 
 // SQL query to select data from database 
 $sql = "SELECT * FROM users where id = $_SESSION[id]";
 $result = $link->query($sql) or die("Error: " . mysqli_error($link));
+
+// SQL query for the logo
+$sq = "SELECT * FROM logo";
+$output = $link->query($sq) or die("Error: " . mysqli_error($link));
 
 // include header
 include 'layout/header.php';
@@ -40,7 +51,7 @@ include 'layout/header.php';
     </div>
   </section>
   <section class="py-5">
-    <!-- Buyers Tab -->
+    <!-- Merchant Tab -->
     <div class="row">
       <div class="col-lg-8">
         <ul class="nav nav-tabs border-0" id="myTab" role="tablist" aria-orientation="vertical">
@@ -53,6 +64,16 @@ include 'layout/header.php';
           <div class="tab-pane fade show active" id="description" role="tabpanel" aria-labelledby="description-tab">
             <div class="p-4 p-lg-5 bg-white">
               <h6 class="text-uppercase">Account Details </h6>
+              <label class="text-small text-uppercase" for="logo">Logo</label>
+              <?php
+                if(mysqli_num_rows($output)===0){ ?>
+              <img src="img/nothing.svg" height="100px" width="100px" alt="No Order">
+              <h3>No Logo</h3><br>
+              <input type="file" name="image" id="image" class="form-control">
+              <a class="btn btn-dark">
+                Add Logo
+              </a>
+              <?php } ?>
               <label class="text-small text-uppercase" for="firstName">First name:</label>
               <p><?php echo $rows["fname"]; ?></p>
               <label class="text-small text-uppercase" for="lastName">Last name:</label>

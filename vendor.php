@@ -2,17 +2,31 @@
 
 session_start();
 
+// check if user is logged in
 if(!isset($_SESSION["loggedin"]) || $_SESSION["loggedin"] !== true) {
   header("location: login.php");
+  exit;
+}
+
+// Check role of user to restrict page visit
+if(!isset($_SESSION["role"]) || $_SESSION["role"] !== "seller") {
+  header("location: index.php");
   exit;
 }
 
 // include config file
 include 'config.php';
 
+// include vendor php details
+include 'vdetails.php';
+
 // SQL query to select data from database 
 $sql = "SELECT * FROM users where id = $_SESSION[id]";
 $result = $link->query($sql) or die("Error: " . mysqli_error($link));
+
+// product table
+$sq = "SELECT * FROM vendor where user_id = $_SESSION[id]";
+$productresult = $link->query($sq) or die("Error: " . mysqli_error($link));
 
 // include header
 include 'layout/header.php';
@@ -82,8 +96,49 @@ include 'layout/header.php';
           <div class="tab-pane fade" id="product" role="tabpanel" aria-labelledby="product-tab">
             <div class="p-4 p-lg-5 bg-white">
               <a class="btn btn-primary" href="#addProduct" data-toggle="modal">Add Product</a>
+              <?php
+                if(mysqli_num_rows($productresult)===0){ ?>
               <img src="img/nothing.svg" alt="No Order">
               <h3>No Product Yet, Start Selling</h3>
+              <?php } ?>
+              <div class="card mt-4">
+                <div class="card-body">
+                  <div class="row">
+                    <div class="col-lg-3">
+                      <h6>Product Images</h6>
+                    </div>
+                    <div class="col-lg-3">
+                      <h6>Name</h6>
+                    </div>
+                    <div class="col-lg-3">
+                      <h6>Price</h6>
+                    </div>
+                    <div class="col-lg-3">
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="card">
+                <div class="card-body">
+                  <div class="row">
+              <?php
+                        while ($row = mysqli_fetch_array($productresult)) {
+                          ?>
+                    <div class="col-lg-3">
+                   <img src="productimages/<?php echo $row["id"]; ?>/<?php echo $row["image_1"]; ?>" alt="" style="height: 100px; width: 100px"> 
+                    </div>
+                    <div class="col-lg-3">
+                    <?php echo $row["p_name"]; ?>
+                    </div>
+                    <div class="col-lg-3">
+                    Eth <?php echo $row["amount"]; ?>
+                    </div>
+                    <div class="col-lg-3">
+                      <div class="btn">Edit</div>
+                      <div class="btn text-danger">Delete</div>
+                    </div>
+                    <?php
+                        } ?>
             </div>
           </div>
         </div>
@@ -107,6 +162,7 @@ include 'layout/header.php';
   </section>
 </div>
 
+
 <!-- Modals -->
 <!--  Product Modal -->
 <div class="modal fade" id="addProduct" tabindex="-1" role="dialog" aria-hidden="true">
@@ -115,47 +171,56 @@ include 'layout/header.php';
       <div class="modal-body p-0">
         <button class="close p-4" type="button" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">×</span></button>
         <div class="row align-items-stretch px-5 py-5">
-          <form action="">
+          <form action="vendor.php" method="POST" enctype="multipart/form-data">
             <div class="row">
               <div class="col-lg-6 form-group">
-                <label class="text-small text-uppercase" for="productName">Product Name</label>
-                <input class="form-control form-control-lg" id="productName" type="text" placeholder="Enter Product name">
+                <label class="text-small text-uppercase" for="productName">Product Name<span class="text-danger">*</span></label>
+                <input class="form-control form-control-lg" id="productName" name="p_name" type="text" placeholder="Enter Product name">
               </div>
               <div class="col-lg-6 form-group">
-                <label class="text-small text-uppercase" for="category">Category</label>
-                <select class="selectpicker category form-control" id="category"></select>
+                <label class="text-small text-uppercase" for="category">Category<span class="text-danger">*</span></label>
+                <select class="category form-control" name="category" id="category">
+                  <option hidden>Select Category</option>
+                  <option value="bag">Bag</option>
+                  <option value="shoe">Shoe</option>
+                  <option value="hair">Hair</option>
+                  <option value="makeup">Makeup</option>
+                  <option value="cloth">Cloth</option>
+                </select>
               </div>
               <div class="col-lg-6 form-group">
-                <label class="text-small text-uppercase" for="amount">Amount</label>
-                <input class="form-control form-control-lg" id="amount" type="text" value="$">
+                <label class="text-small text-uppercase" for="amount">Amount<span class="text-danger">*</span></label>
+                <span class="input-group-text bg-primary" id="basic-addon1">Eth</span>
+                <input class="form-control form-control-lg" id="amount" name="amount" type="text" placeholder="0.00" aria-describedby="basic-addon1">
               </div>
               <div class="col-lg-6 form-group">
                 <label class="text-small text-uppercase" for="discount">Discount</label>
-                <input class="form-control form-control-lg" id="discount" type="text" placeholder="%">
+                <span class="input-group-text bg-primary" id="basic-addon1">Eth</span>
+                <input class="form-control form-control-lg" id="discount" name="discount" type="number" placeholder="%" aria-describedby="basic-addon1">
               </div>
               <div class="col-lg-12 form-group">
-                <label class="text-small text-uppercase" for="tag">Tags</label>
-                <input class="form-control form-control-lg" id="tag" type="text" placeholder="e.g book, bag,laptop">
+                <label class="text-small text-uppercase" for="tag">Tags<span class="text-danger">*</span></label>
+                <input class="form-control form-control-lg" id="tag" name="tags" type="text" placeholder="e.g book, bag,laptop">
               </div>
               <div class="col-lg-12 form-group">
-                <label class="text-small text-uppercase" for="description">Description</label>
-                <textarea name="desc" id="desc" cols="30" class="form-control" rows="10" placeholder="More info on Product"></textarea>
+                <label class="text-small text-uppercase" for="description">Description<span class="text-danger">*</span></label>
+                <textarea name="description" id="desc" cols="30" class="form-control" rows="10" placeholder="More info on Product"></textarea>
               </div>
               <div class="col-lg-6 form-group">
-                <label class="text-small text-uppercase" for="image1">Image</label>
-                <input class="form-control form-control-lg" id="image1" type="file">
+                <label class="text-small text-uppercase" for="image1">Image<span class="text-danger">*</span></label>
+                <input class="form-control form-control-lg" type="file" id="image1" name="image_1">
               </div>
               <div class="reveal col-lg-6 form-group">
                 <label class="text-small text-uppercase" for="image2">Image 2</label>
-                <input class="form-control form-control-lg" id="image2" type="file">
+                <input class="form-control form-control-lg" name="image_2" id="image2" type="file">
               </div>
               <div class="reveal col-lg-6 form-group">
                 <label class="text-small text-uppercase" for="image3">Image 3</label>
-                <input class="form-control form-control-lg" id="image3" type="file">
+                <input class="form-control form-control-lg" name="image_3" id="image3" type="file">
               </div>
               <div class="reveal col-lg-6 form-group">
                 <label class="text-small text-uppercase" for="image4">Image 4</label>
-                <input class="form-control form-control-lg" id="image4" type="file">
+                <input class="form-control form-control-lg" name="image_4" id="image4" type="file">
               </div>
               <div class="col-lg-6 form-group">
                 <div class="custom-control custom-checkbox">
@@ -169,17 +234,18 @@ include 'layout/header.php';
                     <h2 class="h4 text-uppercase mb-4">Digital Product</h2>
                   </div>
                   <div class="col-lg-6 form-group">
-                    <label class="text-small text-uppercase" for="uploadProduct">Upload Product</label>
-                    <input class="form-control form-control-lg" id="uploadProduct" type="file">
+                    <label class="text-small text-uppercase" for="uploadProduct">Upload Product<span class="text-danger">*</span></label>
+                    <input class="form-control form-control-lg" name="product" id="uploadProduct" type="file">
                   </div>
                   <div class="col-lg-6 form-group">
-                    <label class="text-small text-uppercase" for="download">Number of Downloads After Purchase</label>
-                    <input class="form-control form-control-lg" id="download" type="number" placeholder="Number of Downloads">
+                    <label class="text-small text-uppercase" for="download">Number of Downloads After Purchase<span class="text-danger">*</span></label>
+                    <input class="form-control form-control-lg" name="download" id="download" type="number" placeholder="Number of Downloads">
                   </div>
                 </div>
               </div>
               <div class="col-lg-12 form-group">
-                  <button class="btn btn-dark" type="submit">Add Product</button>
+              <span class="text-danger">*</span><label>fields are required</label><br>
+                  <button class="btn btn-dark" type="submit" name="submit">Add Product</button>
                 </div>
             </div>
           </form>
@@ -188,6 +254,9 @@ include 'layout/header.php';
     </div>
   </div>
 </div>
+<script src="js/main.js"></script>
+<script src="js/web3.js"></script>
+<script src="js/vendor.js"></script>
 <?php
                         }
 include 'layout/footer.php'

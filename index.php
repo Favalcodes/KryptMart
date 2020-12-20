@@ -9,6 +9,14 @@ include 'config.php';
 $sql = "SELECT * FROM users where id = $_SESSION[id]";
 $result = $link->query($sql) or die("Error: " . mysqli_error($link));
 
+// seller product table
+$sqs = "SELECT * FROM vendor LIMIT 4";
+$sellerresult = $link->query($sqs) or die("Error: " . mysqli_error($link));
+
+// manufacturer product table
+$sq = "SELECT * FROM manufacture LIMIT 4";
+$manuresult = $link->query($sq) or die("Error: " . mysqli_error($link));
+
 // include header
 include 'layout/header.php'
 ?>
@@ -74,149 +82,67 @@ include 'layout/header.php'
     </header>
     <div class="row">
       <!-- PRODUCT-->
+      <?php
+      if($_SESSION["role"] || $_SESSION["role"] == "customer"){
+        while ($row = mysqli_fetch_array($sellerresult)) {
+      ?>
       <div class="col-xl-3 col-lg-4 col-sm-6">
         <div class="product text-center">
           <div class="position-relative mb-3">
-            <div class="badge text-white badge-"></div><a class="d-block" href="detail.php"><img class="img-fluid w-100" src="img/product-1.jpg" alt="..."></a>
+            <div class="badge text-white badge-"></div><a class="d-block" href="detail.php"><img class="img-fluid w-100" src="sellerimages/<?php echo $row["id"]; ?>/<?php echo $row["image_1"]; ?>" alt="..." style="height: 250px;"></a>
             <div class="product-overlay">
               <ul class="mb-0 list-inline">
                 <li class="list-inline-item m-0 p-0"><a class="btn btn-sm btn-outline-dark" href="#"><i class="far fa-heart"></i></a></li>
-                <li class="list-inline-item m-0 p-0"><a class="btn btn-sm btn-dark" href="cart.php">Add to cart</a>
+                <li class="list-inline-item m-0 p-0"><a class="btn btn-sm btn-dark" href="cart.php?action=addToCart&id=<?php echo $row['id']; ?>">Add to cart</a>
                 </li>
                 <li class="list-inline-item mr-0"><a class="btn btn-sm btn-outline-dark" href="#productView" data-toggle="modal"><i class="fas fa-expand"></i></a></li>
               </ul>
             </div>
           </div>
-          <h6> <a class="reset-anchor" href="detail.php">Kui Ye Chen’s AirPods</a></h6>
-          <p class="small text-muted">$250</p>
+          <h6> <a class="reset-anchor" href="detail.php"><?php echo $row["p_name"]; ?></a></h6>
+          <p class="small text-muted">Eth <?php echo $row["amount"]; ?></p>
         </div>
       </div>
+      <?php }
+       while ($tablerow = mysqli_fetch_array($sellerresult)) {?>
       <!-- PRODUCT-->
       <div class="col-xl-3 col-lg-4 col-sm-6">
         <div class="product text-center">
           <div class="position-relative mb-3">
-            <div class="badge text-white badge-primary">Sale</div><a class="d-block" href="detail.php"><img class="img-fluid w-100" src="img/product-2.jpg" alt="..."></a>
+            <div class="badge text-white badge-primary">Sale</div><a class="d-block" href="detail.php"><img class="img-fluid w-100" src="sellerimages/<?php echo $tablerow["id"]; ?>/<?php echo $tablerow["image_1"]; ?>" alt="..." style="height: 200px;"></a>
             <div class="product-overlay">
               <ul class="mb-0 list-inline">
                 <li class="list-inline-item m-0 p-0"><a class="btn btn-sm btn-outline-dark" href="#"><i class="far fa-heart"></i></a></li>
-                <li class="list-inline-item m-0 p-0"><a class="btn btn-sm btn-dark" href="cart.php">Add to cart</a>
+                <li class="list-inline-item m-0 p-0"><a class="btn btn-sm btn-dark" href="cart.php?action=addToCart&id=<?php echo $tablerow['id']; ?>">Add to cart</a>
                 </li>
                 <li class="list-inline-item mr-0"><a class="btn btn-sm btn-outline-dark" href="#productView" data-toggle="modal"><i class="fas fa-expand"></i></a></li>
               </ul>
             </div>
           </div>
-          <h6> <a class="reset-anchor" href="detail.php">Air Jordan 12 gym red</a></h6>
-          <p class="small text-muted">$300</p>
+          <h6> <a class="reset-anchor" href="detail.php"><?php echo $tablerow["p_name"]; ?></a></h6>
+          <p class="small text-muted">Eth <?php echo $tablerow["amount"]; ?></p>
         </div>
       </div>
+      <?php } while ($tables = mysqli_fetch_array($manuresult)) { ?>
       <!-- PRODUCT-->
       <div class="col-xl-3 col-lg-4 col-sm-6">
         <div class="product text-center">
           <div class="position-relative mb-3">
-            <div class="badge text-white badge-"></div><a class="d-block" href="detail.php"><img class="img-fluid w-100" src="img/product-3.jpg" alt="..."></a>
+            <div class="badge text-white badge-"></div><a class="d-block" href="detail.php"><img class="img-fluid w-100" src="productimages/<?php echo $tables["id"]; ?>/<?php echo $tables["image_1"]; ?>" alt="..." style="height: 250px;"></a>
             <div class="product-overlay">
               <ul class="mb-0 list-inline">
                 <li class="list-inline-item m-0 p-0"><a class="btn btn-sm btn-outline-dark" href="#"><i class="far fa-heart"></i></a></li>
-                <li class="list-inline-item m-0 p-0"><a class="btn btn-sm btn-dark" href="cart.php">Add to cart</a>
+                <li class="list-inline-item m-0 p-0"><a class="btn btn-sm btn-dark" href="cart.php?action=addToCart&id=<?php echo $tables['id']; ?>">Add to cart</a>
                 </li>
                 <li class="list-inline-item mr-0"><a class="btn btn-sm btn-outline-dark" href="#productView" data-toggle="modal"><i class="fas fa-expand"></i></a></li>
               </ul>
             </div>
           </div>
-          <h6> <a class="reset-anchor" href="detail.php">Cyan cotton t-shirt</a></h6>
-          <p class="small text-muted">$25</p>
+          <h6> <a class="reset-anchor" href="detail.php"><?php echo $tables["p_name"]; ?></a></h6>
+          <p class="small text-muted">Eth <?php echo $tables["amount"]; ?></p>
         </div>
       </div>
-      <!-- PRODUCT-->
-      <div class="col-xl-3 col-lg-4 col-sm-6">
-        <div class="product text-center">
-          <div class="position-relative mb-3">
-            <div class="badge text-white badge-info">New</div><a class="d-block" href="detail.php"><img class="img-fluid w-100" src="img/product-4.jpg" alt="..."></a>
-            <div class="product-overlay">
-              <ul class="mb-0 list-inline">
-                <li class="list-inline-item m-0 p-0"><a class="btn btn-sm btn-outline-dark" href="#"><i class="far fa-heart"></i></a></li>
-                <li class="list-inline-item m-0 p-0"><a class="btn btn-sm btn-dark" href="cart.php">Add to cart</a>
-                </li>
-                <li class="list-inline-item mr-0"><a class="btn btn-sm btn-outline-dark" href="#productView" data-toggle="modal"><i class="fas fa-expand"></i></a></li>
-              </ul>
-            </div>
-          </div>
-          <h6> <a class="reset-anchor" href="detail.php">Timex Unisex Originals</a></h6>
-          <p class="small text-muted">$351</p>
-        </div>
-      </div>
-      <!-- PRODUCT-->
-      <div class="col-xl-3 col-lg-4 col-sm-6">
-        <div class="product text-center">
-          <div class="position-relative mb-3">
-            <div class="badge text-white badge-danger">Sold</div><a class="d-block" href="detail.php"><img class="img-fluid w-100" src="img/product-5.jpg" alt="..."></a>
-            <div class="product-overlay">
-              <ul class="mb-0 list-inline">
-                <li class="list-inline-item m-0 p-0"><a class="btn btn-sm btn-outline-dark" href="#"><i class="far fa-heart"></i></a></li>
-                <li class="list-inline-item m-0 p-0"><a class="btn btn-sm btn-dark" href="cart.php">Add to cart</a>
-                </li>
-                <li class="list-inline-item mr-0"><a class="btn btn-sm btn-outline-dark" href="#productView" data-toggle="modal"><i class="fas fa-expand"></i></a></li>
-              </ul>
-            </div>
-          </div>
-          <h6> <a class="reset-anchor" href="detail.php">Red digital smartwatch</a></h6>
-          <p class="small text-muted">$250</p>
-        </div>
-      </div>
-      <!-- PRODUCT-->
-      <div class="col-xl-3 col-lg-4 col-sm-6">
-        <div class="product text-center">
-          <div class="position-relative mb-3">
-            <div class="badge text-white badge-"></div><a class="d-block" href="detail.php"><img class="img-fluid w-100" src="img/product-6.jpg" alt="..."></a>
-            <div class="product-overlay">
-              <ul class="mb-0 list-inline">
-                <li class="list-inline-item m-0 p-0"><a class="btn btn-sm btn-outline-dark" href="#"><i class="far fa-heart"></i></a></li>
-                <li class="list-inline-item m-0 p-0"><a class="btn btn-sm btn-dark" href="cart.php">Add to cart</a>
-                </li>
-                <li class="list-inline-item mr-0"><a class="btn btn-sm btn-outline-dark" href="#productView" data-toggle="modal"><i class="fas fa-expand"></i></a></li>
-              </ul>
-            </div>
-          </div>
-          <h6> <a class="reset-anchor" href="detail.php">Nike air max 95</a></h6>
-          <p class="small text-muted">$300</p>
-        </div>
-      </div>
-      <!-- PRODUCT-->
-      <div class="col-xl-3 col-lg-4 col-sm-6">
-        <div class="product text-center">
-          <div class="position-relative mb-3">
-            <div class="badge text-white badge-"></div><a class="d-block" href="detail.php"><img class="img-fluid w-100" src="img/product-7.jpg" alt="..."></a>
-            <div class="product-overlay">
-              <ul class="mb-0 list-inline">
-                <li class="list-inline-item m-0 p-0"><a class="btn btn-sm btn-outline-dark" href="#"><i class="far fa-heart"></i></a></li>
-                <li class="list-inline-item m-0 p-0"><a class="btn btn-sm btn-dark" href="cart.php">Add to cart</a>
-                </li>
-                <li class="list-inline-item mr-0"><a class="btn btn-sm btn-outline-dark" href="#productView" data-toggle="modal"><i class="fas fa-expand"></i></a></li>
-              </ul>
-            </div>
-          </div>
-          <h6> <a class="reset-anchor" href="detail.php">Joemalone Women prefume</a></h6>
-          <p class="small text-muted">$25</p>
-        </div>
-      </div>
-      <!-- PRODUCT-->
-      <div class="col-xl-3 col-lg-4 col-sm-6">
-        <div class="product text-center">
-          <div class="position-relative mb-3">
-            <div class="badge text-white badge-"></div><a class="d-block" href="detail.php"><img class="img-fluid w-100" src="img/product-8.jpg" alt="..."></a>
-            <div class="product-overlay">
-              <ul class="mb-0 list-inline">
-                <li class="list-inline-item m-0 p-0"><a class="btn btn-sm btn-outline-dark" href="#"><i class="far fa-heart"></i></a></li>
-                <li class="list-inline-item m-0 p-0"><a class="btn btn-sm btn-dark" href="cart.php">Add to cart</a>
-                </li>
-                <li class="list-inline-item mr-0"><a class="btn btn-sm btn-outline-dark" href="#productView" data-toggle="modal"><i class="fas fa-expand"></i></a></li>
-              </ul>
-            </div>
-          </div>
-          <h6> <a class="reset-anchor" href="detail.php">Apple Watch</a></h6>
-          <p class="small text-muted">$351</p>
-        </div>
-      </div>
+      <?php } } ?>
     </div>
   </section>
   <!-- SERVICES-->

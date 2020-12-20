@@ -1,4 +1,27 @@
 <?php
+
+session_start();
+
+// include config file
+include 'config.php';
+
+// check if user is logged in
+if(!isset($_SESSION["loggedin"]) || $_SESSION["loggedin"] !== true) {
+  header("location: login.php");
+  exit;
+}
+
+// Check role of user to restrict page visit
+if(!isset($_SESSION["role"]) || $_SESSION["role"] !== "customer") {
+  header("location: index.php");
+  exit;
+}
+
+// SQL query to select data from database 
+$sql = "SELECT * FROM users where id = $_SESSION[id]";
+$result = $link->query($sql) or die("Error: " . mysqli_error($link));
+
+// include header
 include 'layout/header.php';
 ?>
 <div class="container">
@@ -7,7 +30,10 @@ include 'layout/header.php';
     <div class="container">
       <div class="row px-4 px-lg-5 py-lg-4 align-items-center">
         <div class="col-lg-6">
-          <h1 class="h2 text-uppercase mb-0">Valerie</h1>
+        <?php
+                        while ($rows = mysqli_fetch_array($result)) {
+                        ?>
+          <h1 class="h2 text-uppercase mb-0"><?php echo $rows["username"]; ?></h1>
         </div>
         <div class="col-lg-6 text-lg-right">
           <nav aria-label="breadcrumb">
@@ -34,15 +60,15 @@ include 'layout/header.php';
             <div class="p-4 p-lg-5 bg-white">
               <h6 class="text-uppercase">Account Details </h6>
               <label class="text-small text-uppercase" for="firstName">First name:</label>
-              <p>Favour</p>
+              <p><?php echo $rows["fname"]; ?></p>
               <label class="text-small text-uppercase" for="firstName">Last name:</label>
-              <p>Arua</p>
+              <p><?php echo $rows["lname"]; ?></p>
               <label class="text-small text-uppercase" for="firstName">Email:</label>
-              <p>favour@mail.com</p>
+              <p><?php echo $rows["email"]; ?></p>
               <label class="text-small text-uppercase" for="firstName">Phone Number:</label>
-              <p>+234 999766</p>
+              <p><?php echo $rows["phone"]; ?></p>
               <label class="text-small text-uppercase" for="firstName">Country:</label>
-              <p>Nigeria</p>
+              <p><?php echo $rows["country"]; ?></p>
             </div>
           </div>
           <div class="tab-pane fade" id="reviews" role="tabpanel" aria-labelledby="reviews-tab">
@@ -78,5 +104,6 @@ include 'layout/header.php';
   </section>
 </div>
 <?php
+                        }
 include 'layout/footer.php'
 ?>
