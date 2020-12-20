@@ -120,10 +120,10 @@ include 'layout/header.php';
               </div>
               <div class="card">
                 <div class="card-body">
+                  <div class="row">
               <?php
                         while ($row = mysqli_fetch_array($productresult)) {
                           ?>
-                  <div class="row">
                     <div class="col-lg-3">
                    <img src="productimages/<?php echo $row["id"]; ?>/<?php echo $row["image_1"]; ?>" alt="" style="height: 100px; width: 100px"> 
                     </div>
@@ -135,6 +135,7 @@ include 'layout/header.php';
                     </div>
                     <div class="col-lg-3">
                       <div class="btn">Edit</div>
+                      <div class="btn text-danger">Delete</div>
                     </div>
                     <?php
                         } ?>
