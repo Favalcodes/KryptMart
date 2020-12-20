@@ -31,7 +31,19 @@ include 'layout/head.php';
     <!-- Details-->
     <div class="row">
       <div class="col-lg-8">
-        <form action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]); ?>" method="POST">
+        <div>
+            <button class="btn btn-dark" id="connector"> Connect Wallet</button>
+        </div>
+        
+        <form id="registerForm" role='form' >
+        
+           <div class="col-md-12 mb-3">
+                    <div class="form-group">
+                      <input name="address" type="text" class="form-control form-control-lg form-control-a" placeholder="Wallet Address" id="walletaddress" disabled="">
+                      <div class="validation"></div>
+                    </div>
+            </div>
+  
           <div class="row">
             <div class="col-lg-6 form-group <?php echo (!empty($fname_err)) ? 'has-error' : ''; ?>">
               <label class="text-small text-uppercase" for="firstName">First name</label>
@@ -122,7 +134,7 @@ include 'layout/head.php';
               </div>
             </div>
             <div class="col-lg-12 form-group">
-              <button class="btn btn-dark" type="submit">Register</button>
+              <button id="submit-btn" class="btn btn-dark" type="submit">Register</button>
             </div>
           </div>
         </form>
@@ -139,6 +151,10 @@ include 'layout/head.php';
     </div>
   </section>
 </div>
+<script src="js/main.js"></script>
+<script src="js/web3.js"></script>
+<script src="js/register.js"></script>
+<script src="js/metamask.js"></script>
 <?php
 include 'layout/footer.php';
 ?>
