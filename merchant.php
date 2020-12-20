@@ -64,6 +64,13 @@ include 'layout/header.php';
           <div class="tab-pane fade show active" id="description" role="tabpanel" aria-labelledby="description-tab">
             <div class="p-4 p-lg-5 bg-white">
               <h6 class="text-uppercase">Account Details </h6>
+              <label class="text-small text-uppercase" for="logo">Logo</label>
+              <?php
+                if(mysqli_num_rows($productresult)===0){ ?>
+              <img src="img/nothing.svg" height="100px" width="100px" alt="No Order">
+              <h3>No Logo</h3>
+              <?php } ?>
+              <p><?php echo $tablerows["image"]; ?></p>
               <label class="text-small text-uppercase" for="firstName">First name:</label>
               <p><?php echo $rows["fname"]; ?></p>
               <label class="text-small text-uppercase" for="lastName">Last name:</label>

@@ -1,9 +1,10 @@
 <?php
 
+if(!isset($_SESSION["loggedin"]) || $_SESSION["loggedin"] !== true) {
+  header("location: login.php");
+  exit;
+}
 
-// Initialize shopping cart class 
-include_once 'Cart.class.php'; 
-$cart = new Cart; 
 
 // include header
 include 'layout/header.php';
@@ -44,18 +45,12 @@ include 'layout/header.php';
                   </tr>
                 </thead>
                 <tbody>
-                <?php 
-                            if($cart->total_items() > 0){ 
-                                // Get cart items from session 
-                                $cartItems = $cart->contents(); 
-                                foreach($cartItems as $item){ 
-                            ?>
                   <tr>
                     <th class="pl-0 border-0" scope="row">
                       <div class="media align-items-center"><a class="reset-anchor d-block animsition-link"
                           href="detail.html"><img src="img/product-detail-3.jpg" alt="..." width="70" /></a>
                         <div class="media-body ml-3"><strong class="h6"><a class="reset-anchor animsition-link"
-                              href="detail.html"><?php echo $item["name"]; ?></a></strong></div>
+                              href="detail.html">Red digital smartwatch</a></strong></div>
                       </div>
                     </th>
                     <td class="align-middle border-0">
@@ -66,7 +61,7 @@ include 'layout/header.php';
                           class="small text-uppercase text-gray headings-font-family">Quantity</span>
                         <div class="quantity">
                           <button class="dec-btn p-0"><i class="fas fa-caret-left"></i></button>
-                          <input class="form-control form-control-sm border-0 shadow-0 p-0" type="text" value="<?php echo $item['qty']; ?>" onchange="updateCartItem(this, '<?php echo $item['rowid']; ?>')" />
+                          <input class="form-control form-control-sm border-0 shadow-0 p-0" type="text" value="1" />
                           <button class="inc-btn p-0"><i class="fas fa-caret-right"></i></button>
                         </div>
                       </div>
@@ -74,21 +69,9 @@ include 'layout/header.php';
                     <td class="align-middle border-0">
                       <p class="mb-0 small">$250</p>
                     </td>
-                    <td class="align-middle border-0"><a class="reset-anchor" onclick="return confirm('Are you sure?')?window.location.href='cartAction.php?action=removeCartItem&id=<?php echo $item['rowid']; ?>':false;" href="#"><i
+                    <td class="align-middle border-0"><a class="reset-anchor" href="#"><i
                           class="fas fa-trash-alt small text-muted"></i></a></td>
                   </tr>
-                  <?php } }else{ ?>
-                    <tr><td colspan="5"><p>Your cart is empty.....</p></td>
-                            <?php } ?>
-                            <?php if($cart->total_items() > 0){ ?>
-                            <tr>
-                                <td></td>
-                                <td></td>
-                                <td><strong>Cart Total</strong></td>
-                                <td class="text-right"><strong><?php echo '$'.$cart->total().' USD'; ?></strong></td>
-                                <td></td>
-                            </tr>
-                            <?php } ?>
                   <tr>
                     <th class="pl-0 border-light" scope="row">
                       <div class="media align-items-center"><a class="reset-anchor d-block animsition-link"
@@ -124,10 +107,8 @@ include 'layout/header.php';
               <div class="row align-items-center text-center">
                 <div class="col-md-6 mb-3 mb-md-0 text-md-left"><a class="btn btn-link p-0 text-dark btn-sm"
                     href="shop.php"><i class="fas fa-long-arrow-alt-left mr-2"> </i>Continue shopping</a></div>
-                <div class="col-md-6 text-md-right">
-                    <?php if($cart->total_items() > 0){ ?><a class="btn btn-outline-dark btn-sm" href="checkout.php">Procceed
-                    to checkout<i class="fas fa-long-arrow-alt-right ml-2"></i></a>
-                    <?php } ?></div>
+                <div class="col-md-6 text-md-right"><a class="btn btn-outline-dark btn-sm" href="checkout.php">Procceed
+                    to checkout<i class="fas fa-long-arrow-alt-right ml-2"></i></a></div>
               </div>
             </div>
           </div>
