@@ -188,6 +188,9 @@ include 'layout/header.php';
     </div>
   </div>
 </div>
+<script src="js/main.js"></script>
+<script src="js/web3.js"></script>
+<script src="js/vendor.js"></script>
 <?php
                         }
 include 'layout/footer.php'
