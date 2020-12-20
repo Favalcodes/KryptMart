@@ -113,14 +113,10 @@ include 'layout/head.php';
             </div>
             <div class="col-lg-12 form-group" id="merchant">
               <div class="row">
-                <div class="col-lg-6 <?php echo (!empty($company_err)) ? 'has-error' : ''; ?>">
+                <div class="col-lg-12 <?php echo (!empty($company_err)) ? 'has-error' : ''; ?>">
                   <label for="comp">Company Name</label>
                   <input type="text" class="form-control w-100" name="comp" id="comp">
                   <span class="help-block"><?php echo $company_err; ?></span>
-                </div>
-                <div class="col-lg-6">
-                  <label for="comp">Logo</label>
-                  <input type="file" class="form-control w-100" name="delivery_logo" id="delivery_logo">
                 </div>
               </div>
             </div>

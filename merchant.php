@@ -21,6 +21,10 @@ if(!isset($_SESSION["role"]) || $_SESSION["role"] !== "merchant") {
 $sql = "SELECT * FROM users where id = $_SESSION[id]";
 $result = $link->query($sql) or die("Error: " . mysqli_error($link));
 
+// SQL query for the logo
+$sq = "SELECT * FROM logo where user_id = $_SESSION[id]";
+$output = $link->query($sq) or die("Error: " . mysqli_error($link));
+
 // include header
 include 'layout/header.php';
 ?>
@@ -47,7 +51,7 @@ include 'layout/header.php';
     </div>
   </section>
   <section class="py-5">
-    <!-- Buyers Tab -->
+    <!-- Merchant Tab -->
     <div class="row">
       <div class="col-lg-8">
         <ul class="nav nav-tabs border-0" id="myTab" role="tablist" aria-orientation="vertical">
