@@ -90,17 +90,20 @@ include 'layout/header.php'
         <div class="product text-center">
           <div class="position-relative mb-3">
             <div class="badge text-white badge-"></div><a class="d-block" href="detail.php"><img class="img-fluid w-100" src="sellerimages/<?php echo $row["id"]; ?>/<?php echo $row["image_1"]; ?>" alt="..." style="height: 250px;"></a>
+                        <input type="file" value="<?php echo $row['image_1']; ?>" name="image" hidden>
             <div class="product-overlay">
               <ul class="mb-0 list-inline">
                 <li class="list-inline-item m-0 p-0"><a class="btn btn-sm btn-outline-dark" href="#"><i class="far fa-heart"></i></a></li>
-                <li class="list-inline-item m-0 p-0"><a class="btn btn-sm btn-dark" href="cart.php?action=addToCart&id=<?php echo $row['id']; ?>">Add to cart</a>
+                <li class="list-inline-item m-0 p-0"><button class="btn btn-sm btn-dark" name="submit" type="submit">Add to cart</button>
                 </li>
                 <li class="list-inline-item mr-0"><a class="btn btn-sm btn-outline-dark" href="#productView" data-toggle="modal"><i class="fas fa-expand"></i></a></li>
               </ul>
             </div>
           </div>
           <h6> <a class="reset-anchor" href="detail.php"><?php echo $row["p_name"]; ?></a></h6>
+                        <input type="text" value="<?php echo $row['p_name']; ?>" name="name" hidden>
           <p class="small text-muted">Eth <?php echo $row["amount"]; ?></p>
+                        <input type="text" value="<?php echo $row['amount']; ?>" name="price" hidden>
         </div>
       </div>
       <?php }
@@ -110,17 +113,20 @@ include 'layout/header.php'
         <div class="product text-center">
           <div class="position-relative mb-3">
             <div class="badge text-white badge-primary">Sale</div><a class="d-block" href="detail.php"><img class="img-fluid w-100" src="sellerimages/<?php echo $tablerow["id"]; ?>/<?php echo $tablerow["image_1"]; ?>" alt="..." style="height: 200px;"></a>
+                        <input type="file" value="<?php echo $tablerow['image_1']; ?>" name="image" hidden>
             <div class="product-overlay">
               <ul class="mb-0 list-inline">
                 <li class="list-inline-item m-0 p-0"><a class="btn btn-sm btn-outline-dark" href="#"><i class="far fa-heart"></i></a></li>
-                <li class="list-inline-item m-0 p-0"><a class="btn btn-sm btn-dark" href="cart.php?action=addToCart&id=<?php echo $tablerow['id']; ?>">Add to cart</a>
+                <li class="list-inline-item m-0 p-0"><button class="btn btn-sm btn-dark" name="submit" type="submit">Add to cart</button>
                 </li>
                 <li class="list-inline-item mr-0"><a class="btn btn-sm btn-outline-dark" href="#productView" data-toggle="modal"><i class="fas fa-expand"></i></a></li>
               </ul>
             </div>
           </div>
           <h6> <a class="reset-anchor" href="detail.php"><?php echo $tablerow["p_name"]; ?></a></h6>
+                        <input type="text" value="<?php echo $tablerow['p_name']; ?>" name="name" hidden>
           <p class="small text-muted">Eth <?php echo $tablerow["amount"]; ?></p>
+                        <input type="text" value="<?php echo $tablerow['amount']; ?>" name="price" hidden>
         </div>
       </div>
       <?php } while ($tables = mysqli_fetch_array($manuresult)) { ?>
@@ -129,17 +135,20 @@ include 'layout/header.php'
         <div class="product text-center">
           <div class="position-relative mb-3">
             <div class="badge text-white badge-"></div><a class="d-block" href="detail.php"><img class="img-fluid w-100" src="productimages/<?php echo $tables["id"]; ?>/<?php echo $tables["image_1"]; ?>" alt="..." style="height: 250px;"></a>
+                        <input type="file" value="<?php echo $tables['image_1']; ?>" name="image" hidden>
             <div class="product-overlay">
               <ul class="mb-0 list-inline">
                 <li class="list-inline-item m-0 p-0"><a class="btn btn-sm btn-outline-dark" href="#"><i class="far fa-heart"></i></a></li>
-                <li class="list-inline-item m-0 p-0"><a class="btn btn-sm btn-dark" href="cart.php?action=addToCart&id=<?php echo $tables['id']; ?>">Add to cart</a>
+                <li class="list-inline-item m-0 p-0"><button class="btn btn-sm btn-dark" name="submit" type="submit">Add to cart</button>
                 </li>
                 <li class="list-inline-item mr-0"><a class="btn btn-sm btn-outline-dark" href="#productView" data-toggle="modal"><i class="fas fa-expand"></i></a></li>
               </ul>
             </div>
           </div>
           <h6> <a class="reset-anchor" href="detail.php"><?php echo $tables["p_name"]; ?></a></h6>
+                        <input type="text" value="<?php echo $tables['p_name']; ?>" name="name" hidden>
           <p class="small text-muted">Eth <?php echo $tables["amount"]; ?></p>
+                        <input type="text" value="<?php echo $tables['amount']; ?>" name="price" hidden>
         </div>
       </div>
       <?php } } ?>
