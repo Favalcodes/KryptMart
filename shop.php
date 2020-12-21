@@ -6,6 +6,23 @@ session_start();
 // include config
 include 'config.php';
 
+if(isset($_POST['submit']))
+{
+	$productname=$_POST['name'];
+	$productamount=$_POST['price'];
+	$prod=$_FILES["image"]["name"];
+//for getting product id
+$query=mysqli_query($link,"select max(id) as pid from cart");
+	$result=mysqli_fetch_array($query);
+	 $productid=$result['pid']+1;
+	$dir="cart/$productid";
+	mkdir($dir);// directory creation for product images
+	move_uploaded_file($_FILES["image"]["tmp_name"],"cart/$productid/".$_FILES["image"]["name"]);
+$sql=mysqli_query($link,"insert into cart (user_id,name,price,image) values('$_SESSION[id]','$productname','$productamount','$prod')");
+echo "<script>alert('Added to Cart!')</script>";
+
+}
+
 // seller product table
 $sqs = "SELECT * FROM vendor";
 $sellerresult = $link->query($sqs) or die("Error: " . mysqli_error($link));
@@ -185,6 +202,7 @@ include 'layout/header.php';
                     <div class="product text-center">
                       <div class="mb-3 position-relative">
                         <div class="badge text-white badge-"></div><a class="d-block" href="detail.php"><img class="img-fluid w-100" src="sellerimages/<?php echo $row['id']; ?>/<?php echo $row['image_1']; ?>" alt="..."></a>
+                        <input type="file" value="<?php echo $row['image_1']; ?>" name="image" hidden>
                         <div class="product-overlay">
                           <ul class="mb-0 list-inline">
                             <li class="list-inline-item m-0 p-0"><a class="btn btn-sm btn-outline-dark" href="#"><i class="far fa-heart"></i></a></li>
@@ -195,7 +213,9 @@ include 'layout/header.php';
                         </div>
                       </div>
                       <h6> <a class="reset-anchor" href="detail.php"><?php echo $row["p_name"]; ?></a></h6>
+                      <input type="text" value="<?php echo $row['p_name']; ?>" name="name" hidden>
                       <p class="small text-muted">Eth <?php echo $row["amount"]; ?></p>
+                        <input type="text" value="<?php echo $row['amount']; ?>" name="price" hidden>
                     </div>
                   </form>
                 </div>
@@ -207,6 +227,7 @@ include 'layout/header.php';
                     <div class="product text-center">
                       <div class="mb-3 position-relative">
                         <div class="badge text-white badge-"></div><a class="d-block" href="detail.php"><img class="img-fluid w-100" src="sellerimages/<?php echo $tablerow['id']; ?>/<?php echo $tablerow['image_1']; ?>" alt="..." name="pic"></a>
+                        <input type="file" value="<?php echo $tablerow['image_1']; ?>" name="image" hidden>
                         <div class="product-overlay">
                           <ul class="mb-0 list-inline">
                             <li class="list-inline-item m-0 p-0"><a class="btn btn-sm btn-outline-dark" href="#"><i class="far fa-heart"></i></a></li>
@@ -217,7 +238,9 @@ include 'layout/header.php';
                         </div>
                       </div>
                       <h6> <a class="reset-anchor" href="detail.php" name="name"><?php echo $tablerow["p_name"]; ?></a></h6>
+                        <input type="text" value="<?php echo $tablerow['p_name']; ?>" name="name" hidden>
                       <p class="small text-muted" name="price">Eth <?php echo $tablerow["amount"]; ?></p>
+                        <input type="text" value="<?php echo $tablerow['amount']; ?>" name="price" hidden>
                     </div>
                   </form>
                 </div>
@@ -229,6 +252,7 @@ include 'layout/header.php';
                     <div class="product text-center">
                       <div class="mb-3 position-relative">
                         <div class="badge text-white badge-primary">New</div><a class="d-block" href="detail.php"><img class="img-fluid w-100" src="productimages/<?php echo $tables['id']; ?>/<?php echo $tables['image_1']; ?>" alt="..."></a>
+                        <input type="file" value="<?php echo $tables['image_1']; ?>" name="image" hidden>
                         <div class="product-overlay">
                           <ul class="mb-0 list-inline">
                             <li class="list-inline-item m-0 p-0"><a class="btn btn-sm btn-outline-dark" href="#"><i class="far fa-heart"></i></a></li>
@@ -239,7 +263,9 @@ include 'layout/header.php';
                         </div>
                       </div>
                       <h6> <a class="reset-anchor" href="detail.php"><?php echo $tables["p_name"]; ?></a></h6>
+                        <input type="text" value="<?php echo $tables['p_name']; ?>" name="name" hidden>
                       <p class="small text-muted">Eth <?php echo $tables["amount"]; ?></p>
+                        <input type="text" value="<?php echo $tables['amount']; ?>" name="price" hidden>
                     </div>
                   </form>
                 </div>
