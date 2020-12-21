@@ -306,7 +306,8 @@
       "name": "orderProduct",
       "outputs": [],
       "stateMutability": "payable",
-      "type": "function"
+      "type": "function",
+      "payable": true
     },
     {
       "inputs": [
@@ -340,7 +341,8 @@
         }
       ],
       "stateMutability": "view",
-      "type": "function"
+      "type": "function",
+      "constant": true
     },
     {
       "inputs": [
@@ -384,7 +386,8 @@
         }
       ],
       "stateMutability": "view",
-      "type": "function"
+      "type": "function",
+      "constant": true
     },
     {
       "inputs": [
@@ -413,7 +416,8 @@
         }
       ],
       "stateMutability": "view",
-      "type": "function"
+      "type": "function",
+      "constant": true
     }
   ],
   "metadata": "{\"compiler\":{\"version\":\"0.6.0+commit.26b70077\"},\"language\":\"Solidity\",\"output\":{\"abi\":[{\"anonymous\":false,\"inputs\":[{\"indexed\":false,\"internalType\":\"uint256\",\"name\":\"_id\",\"type\":\"uint256\"},{\"indexed\":false,\"internalType\":\"string\",\"name\":\"itemName\",\"type\":\"string\"},{\"indexed\":false,\"internalType\":\"string\",\"name\":\"_vendor\",\"type\":\"string\"},{\"indexed\":false,\"internalType\":\"uint256\",\"name\":\"_price\",\"type\":\"uint256\"},{\"indexed\":false,\"internalType\":\"uint256\",\"name\":\"_moq\",\"type\":\"uint256\"}],\"name\":\"newIventoryItem\",\"type\":\"event\"},{\"anonymous\":false,\"inputs\":[{\"indexed\":false,\"internalType\":\"uint256\",\"name\":\"_id\",\"type\":\"uint256\"},{\"indexed\":false,\"internalType\":\"string\",\"name\":\"name\",\"type\":\"string\"},{\"indexed\":false,\"internalType\":\"uint256\",\"name\":\"itemNumber\",\"type\":\"uint256\"},{\"indexed\":false,\"internalType\":\"uint256\",\"name\":\"amountPaid\",\"type\":\"uint256\"},{\"indexed\":false,\"internalType\":\"enum ProductSale.ProductTransportStatus\",\"name\":\"orderStatus\",\"type\":\"uint8\"},{\"indexed\":false,\"internalType\":\"address\",\"name\":\"new_owner\",\"type\":\"address\"}],\"name\":\"newOrder\",\"type\":\"event\"},{\"anonymous\":false,\"inputs\":[{\"indexed\":false,\"internalType\":\"uint256\",\"name\":\"_id\",\"type\":\"uint256\"},{\"indexed\":false,\"internalType\":\"string\",\"name\":\"name\",\"type\":\"string\"},{\"indexed\":false,\"internalType\":\"string\",\"name\":\"description\",\"type\":\"string\"}],\"name\":\"newProduct\",\"type\":\"event\"},{\"anonymous\":false,\"inputs\":[{\"indexed\":false,\"internalType\":\"uint256\",\"name\":\"_id\",\"type\":\"uint256\"},{\"indexed\":false,\"internalType\":\"string\",\"name\":\"_name\",\"type\":\"string\"},{\"indexed\":false,\"internalType\":\"string\",\"name\":\"_description\",\"type\":\"string\"},{\"indexed\":false,\"internalType\":\"string\",\"name\":\"_provider\",\"type\":\"string\"},{\"indexed\":false,\"internalType\":\"uint256\",\"name\":\"_price\",\"type\":\"uint256\"}],\"name\":\"newTransportService\",\"type\":\"event\"},{\"anonymous\":false,\"inputs\":[{\"indexed\":false,\"internalType\":\"uint256\",\"name\":\"id\",\"type\":\"uint256\"},{\"indexed\":false,\"internalType\":\"string\",\"name\":\"name\",\"type\":\"string\"},{\"indexed\":false,\"internalType\":\"string\",\"name\":\"description\",\"type\":\"string\"},{\"indexed\":false,\"internalType\":\"enum UserRegistration.UserType\",\"name\":\"role\",\"type\":\"uint8\"}],\"name\":\"newUser\",\"type\":\"event\"},{\"inputs\":[{\"internalType\":\"uint256\",\"name\":\"orderId\",\"type\":\"uint256\"}],\"name\":\"acknowledgeReciept\",\"outputs\":[{\"internalType\":\"string\",\"name\":\"\",\"type\":\"string\"}],\"stateMutability\":\"nonpayable\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"uint256\",\"name\":\"_productId\",\"type\":\"uint256\"},{\"internalType\":\"uint256\",\"name\":\"_price\",\"type\":\"uint256\"},{\"internalType\":\"uint256\",\"name\":\"_moq\",\"type\":\"uint256\"}],\"name\":\"addInventoryItem\",\"outputs\":[],\"stateMutability\":\"nonpayable\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"string\",\"name\":\"_name\",\"type\":\"string\"},{\"internalType\":\"string\",\"name\":\"_description\",\"type\":\"string\"},{\"internalType\":\"uint256\",\"name\":\"_price\",\"type\":\"uint256\"},{\"internalType\":\"uint256\",\"name\":\"_moq\",\"type\":\"uint256\"}],\"name\":\"addProduct\",\"outputs\":[],\"stateMutability\":\"nonpayable\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"string\",\"name\":\"_name\",\"type\":\"string\"},{\"internalType\":\"string\",\"name\":\"_description\",\"type\":\"string\"},{\"internalType\":\"uint256\",\"name\":\"_price\",\"type\":\"uint256\"}],\"name\":\"addTransportService\",\"outputs\":[],\"stateMutability\":\"nonpayable\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"string\",\"name\":\"_name\",\"type\":\"string\"},{\"internalType\":\"string\",\"name\":\"_description\",\"type\":\"string\"},{\"internalType\":\"enum UserRegistration.UserType\",\"name\":\"_role\",\"type\":\"uint8\"}],\"name\":\"addUser\",\"outputs\":[],\"stateMutability\":\"nonpayable\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"uint256\",\"name\":\"itemID\",\"type\":\"uint256\"},{\"internalType\":\"uint256\",\"name\":\"quantity\",\"type\":\"uint256\"}],\"name\":\"orderProduct\",\"outputs\":[],\"stateMutability\":\"payable\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"uint256\",\"name\":\"\",\"type\":\"uint256\"}],\"name\":\"users\",\"outputs\":[{\"internalType\":\"string\",\"name\":\"name\",\"type\":\"string\"},{\"internalType\":\"string\",\"name\":\"description\",\"type\":\"string\"},{\"internalType\":\"address\",\"name\":\"userAccount\",\"type\":\"address\"},{\"internalType\":\"enum UserRegistration.UserType\",\"name\":\"role\",\"type\":\"uint8\"}],\"stateMutability\":\"view\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"uint256\",\"name\":\"_id\",\"type\":\"uint256\"}],\"name\":\"viewInventoryItem\",\"outputs\":[{\"internalType\":\"string\",\"name\":\"\",\"type\":\"string\"},{\"internalType\":\"string\",\"name\":\"\",\"type\":\"string\"},{\"internalType\":\"string\",\"name\":\"\",\"type\":\"string\"},{\"internalType\":\"uint256\",\"name\":\"\",\"type\":\"uint256\"},{\"internalType\":\"uint256\",\"name\":\"\",\"type\":\"uint256\"},{\"internalType\":\"enum ProductCreation.ProductSaleStatus\",\"name\":\"\",\"type\":\"uint8\"}],\"stateMutability\":\"view\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"uint256\",\"name\":\"_userId\",\"type\":\"uint256\"}],\"name\":\"viewUser\",\"outputs\":[{\"internalType\":\"string\",\"name\":\"\",\"type\":\"string\"},{\"internalType\":\"string\",\"name\":\"\",\"type\":\"string\"},{\"internalType\":\"enum UserRegistration.UserType\",\"name\":\"\",\"type\":\"uint8\"}],\"stateMutability\":\"view\",\"type\":\"function\"}],\"devdoc\":{\"methods\":{}},\"userdoc\":{\"methods\":{}}},\"settings\":{\"compilationTarget\":{\"/C/Users/Sam/Documents/KryptMart/KryptMart/contracts/productTransportation.sol\":\"ProductTransportation\"},\"evmVersion\":\"istanbul\",\"libraries\":{},\"metadata\":{\"bytecodeHash\":\"ipfs\"},\"optimizer\":{\"enabled\":false,\"runs\":200},\"remappings\":[]},\"sources\":{\"/C/Users/Sam/Documents/KryptMart/KryptMart/contracts/productCreation.sol\":{\"keccak256\":\"0x27f4a395e1a22107fe75bf4dac1360fc4362ed67bfcc25c5f532ecc48258f45c\",\"urls\":[\"bzz-raw://dc199abd5a9b08e419d2454552b7dcc3be80261809c53774ff15cdf764430f27\",\"dweb:/ipfs/QmQtd3Pes5b1cLoZhVevHYc9omPPCcuBv5Qsyic2vh7g7g\"]},\"/C/Users/Sam/Documents/KryptMart/KryptMart/contracts/productSale.sol\":{\"keccak256\":\"0x647ed543b8beb55ffbbedabf0f85f31a7ff9a9bdd44d464b83cf0f9c359d8c45\",\"urls\":[\"bzz-raw://4bd15ef8b40df028e8c045cc7c25d32730fd945b164eb8143876e4b4b81639a7\",\"dweb:/ipfs/QmSzHepS7tvRJeUS2GgoM9t1fwssHrxWmynevKPp114ADb\"]},\"/C/Users/Sam/Documents/KryptMart/KryptMart/contracts/productTransportation.sol\":{\"keccak256\":\"0x274df66decc93c631ab6427d9782775ca91b96ef85cd4c345d84ca8679880819\",\"urls\":[\"bzz-raw://ac493939757b058be444a54c585f2b4a9b387a6a9a4cebf1a1a68276cf6b927f\",\"dweb:/ipfs/QmcQM8T3enmds4jLJj8orXiAF8NHaN6irrbd4QCLwQEwav\"]},\"/C/Users/Sam/Documents/KryptMart/KryptMart/contracts/userRegistration.sol\":{\"keccak256\":\"0x1ed354944e4c8c43da5df730b752120bb8064d73d0cb5f059610c4ab11c7de83\",\"urls\":[\"bzz-raw://fd4adc43d9396cfa1f9f13082c3c9bedfd2cafbb4fac816a6e26f39a0dd3e758\",\"dweb:/ipfs/QmYjr8sVv8v3eFFeAvkQT2HGrHxkK1F8PzSm7Bsw6S2NoT\"]},\"@openzeppelin/contracts/math/SafeMath.sol\":{\"keccak256\":\"0x3b21f2c8d626de3b9925ae33e972d8bf5c8b1bffb3f4ee94daeed7d0679036e6\",\"urls\":[\"bzz-raw://7f8d45329fecbf0836ad7543330c3ecd0f8d0ffa42d4016278c3eb2215fdcdfe\",\"dweb:/ipfs/QmXWLT7GcnHtA5NiD6MFi2CV3EWJY4wv5mLNnypqYDrxL3\"]}},\"version\":1}",
@@ -961,9 +965,191 @@
     "name": "solc",
     "version": "0.6.0+commit.26b70077.Emscripten.clang"
   },
-  "networks": {},
+  "networks": {
+    "5777": {
+      "events": {
+        "0x05325ee361c3f80a52d44d6bda5c30795cdbdaa88bfce86728179ff94572ccfa": {
+          "anonymous": false,
+          "inputs": [
+            {
+              "indexed": false,
+              "internalType": "uint256",
+              "name": "_id",
+              "type": "uint256"
+            },
+            {
+              "indexed": false,
+              "internalType": "string",
+              "name": "itemName",
+              "type": "string"
+            },
+            {
+              "indexed": false,
+              "internalType": "string",
+              "name": "_vendor",
+              "type": "string"
+            },
+            {
+              "indexed": false,
+              "internalType": "uint256",
+              "name": "_price",
+              "type": "uint256"
+            },
+            {
+              "indexed": false,
+              "internalType": "uint256",
+              "name": "_moq",
+              "type": "uint256"
+            }
+          ],
+          "name": "newIventoryItem",
+          "type": "event"
+        },
+        "0x65317827a25c08d7105ed401a81e31279d105a76f61b3f19acc78b518cc2fa94": {
+          "anonymous": false,
+          "inputs": [
+            {
+              "indexed": false,
+              "internalType": "uint256",
+              "name": "_id",
+              "type": "uint256"
+            },
+            {
+              "indexed": false,
+              "internalType": "string",
+              "name": "name",
+              "type": "string"
+            },
+            {
+              "indexed": false,
+              "internalType": "uint256",
+              "name": "itemNumber",
+              "type": "uint256"
+            },
+            {
+              "indexed": false,
+              "internalType": "uint256",
+              "name": "amountPaid",
+              "type": "uint256"
+            },
+            {
+              "indexed": false,
+              "internalType": "enum ProductSale.ProductTransportStatus",
+              "name": "orderStatus",
+              "type": "uint8"
+            },
+            {
+              "indexed": false,
+              "internalType": "address",
+              "name": "new_owner",
+              "type": "address"
+            }
+          ],
+          "name": "newOrder",
+          "type": "event"
+        },
+        "0x3f16dcdff7ba9d01c350fd10ed43011166a63dd7cd4f0bf5c8560e272aa20c51": {
+          "anonymous": false,
+          "inputs": [
+            {
+              "indexed": false,
+              "internalType": "uint256",
+              "name": "_id",
+              "type": "uint256"
+            },
+            {
+              "indexed": false,
+              "internalType": "string",
+              "name": "name",
+              "type": "string"
+            },
+            {
+              "indexed": false,
+              "internalType": "string",
+              "name": "description",
+              "type": "string"
+            }
+          ],
+          "name": "newProduct",
+          "type": "event"
+        },
+        "0x6ecf6e7361e9cb1c80560e36f0b59ef0d38f0b6e6ee0ac1db99995706c219258": {
+          "anonymous": false,
+          "inputs": [
+            {
+              "indexed": false,
+              "internalType": "uint256",
+              "name": "_id",
+              "type": "uint256"
+            },
+            {
+              "indexed": false,
+              "internalType": "string",
+              "name": "_name",
+              "type": "string"
+            },
+            {
+              "indexed": false,
+              "internalType": "string",
+              "name": "_description",
+              "type": "string"
+            },
+            {
+              "indexed": false,
+              "internalType": "string",
+              "name": "_provider",
+              "type": "string"
+            },
+            {
+              "indexed": false,
+              "internalType": "uint256",
+              "name": "_price",
+              "type": "uint256"
+            }
+          ],
+          "name": "newTransportService",
+          "type": "event"
+        },
+        "0x6bc9dfa6cd5c47cfda0a28c8500dc038d68815409167dd17805597f5c0543819": {
+          "anonymous": false,
+          "inputs": [
+            {
+              "indexed": false,
+              "internalType": "uint256",
+              "name": "id",
+              "type": "uint256"
+            },
+            {
+              "indexed": false,
+              "internalType": "string",
+              "name": "name",
+              "type": "string"
+            },
+            {
+              "indexed": false,
+              "internalType": "string",
+              "name": "description",
+              "type": "string"
+            },
+            {
+              "indexed": false,
+              "internalType": "enum UserRegistration.UserType",
+              "name": "role",
+              "type": "uint8"
+            }
+          ],
+          "name": "newUser",
+          "type": "event"
+        }
+      },
+      "links": {},
+      "address": "0x904b94D71bF483791a3b19aA604EFa8353AfA42A",
+      "transactionHash": "0x777bf312fc4c10bb0b2a5acbb9d72e78b65a29617dc52228eb76aeec80e3c340"
+    }
+  },
   "schemaVersion": "3.2.5",
-  "updatedAt": "2020-12-20T23:16:22.408Z",
+  "updatedAt": "2020-12-20T23:59:40.338Z",
+  "networkType": "ethereum",
   "devdoc": {
     "methods": {}
   },
